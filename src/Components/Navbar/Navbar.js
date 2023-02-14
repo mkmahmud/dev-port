@@ -40,7 +40,7 @@ const Navbar = () => {
                 <li className={`nav-links rounded-Border ${selectedPage === 'home' ? 'navActive' : ''}`}><Link to='/' onClick={() => setselectedPage('home')}>_Home</Link></li>
                 <li className={`nav-links rounded-Border ${selectedPage === 'about' ? 'navActive' : ''}`}><Link to='/about' onClick={() => setselectedPage('about')}>_About-Me</Link></li>
                 <li className={`nav-links rounded-Border ${selectedPage === 'projects' ? 'navActive' : ''}`}><Link to='/projects' onClick={() => setselectedPage('projects')}>_Projects</Link></li>
-                <li className='nav-links rounded-Border'><Link to='/'>_Contact-me</Link></li>
+                <li className={`nav-links rounded-Border ${selectedPage === 'contact' ? 'navActive' : ''}`}><Link to='/contact' onClick={() => setselectedPage('contact')}>_Contact-me</Link></li>
                 <li className='nav-links rounded-Border grow text-right'></li>
                 <li className='nav-links rounded-Border'><Link to='/'>Resume</Link></li>
             </ul>
