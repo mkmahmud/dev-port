@@ -4,12 +4,12 @@ import reactImge from '../../../Assets/icons/languages/react.png';
 
 const ProjectsCard = ({ setopenProject, data, setDetailsProject }) => {
 
-    const {shortTitle, thambnail} = data;
+    const {shortTitle, thambnail, projectHead} = data;
 
 
     return (
         <div className='w-[291px] md:w-[370px] my-4 mx-auto '>
-            <h2 className='text-text text-left'><span className='text-text-blue font-bold'>Project 1</span> <span>// _ui-animations</span></h2>
+            <h2 className='text-text text-left'><span className='text-text-blue font-bold'>Project</span> <span>{projectHead}</span></h2>
             <div className='bg-cardBG overflow-hidden my-4 text-left rounded-lg'>
                 <div className='relative'>
                     <img className='w-full md:h-[145px]' src={thambnail} alt="" />

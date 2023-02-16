@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
 import headerDrop from '../../Assets/icons/headerDrop.png';
 import cross from '../../Assets/icons/close-icon.png';
 import LanguageCard from './LanguageCard/LanguageCard';
@@ -7,12 +8,16 @@ import htmlImage from '../../Assets/icons/languages/html.png';
 import cssImage from '../../Assets/icons/languages/css.png';
 import gatsImage from '../../Assets/icons/languages/gatsby.png';
 import ProjectsCard from './ProjectsCard/ProjectsCard';
-import projectBG from '../../Assets/projectbg.png'
 import TagButton from '../../Components/Button/TagButton';
 import SecondButton from '../../Components/Button/SecondButton';
 import starfill from '../../Assets/icons/starfill.png';
 import staroutline from '../../Assets/icons/staroutline.png';
 
+// Import Swiper styles
+import 'swiper/css';
+import './Projects.css'
+
+import { Autoplay, Pagination, Navigation } from "swiper";
 
 const Projects = () => {
 
@@ -32,7 +37,7 @@ const Projects = () => {
             .then(data => setProjects(data))
     }, [])
 
-    
+
 
     return (
         <div className='md:flex h-full '>
@@ -51,7 +56,7 @@ const Projects = () => {
                     </ul>
                 </div>
             </div>
-            <div className='md:w-10/12 h-full overflow-hidden'>
+            <div className='md:w-10/12 h-[85vh] overflow-scroll projects-board'>
                 <div className='p-2 text-left border-b border-border-bg'>
                     <h2 className='text-base text-text flex '><span>Projects</span> <img className='px-10' src={cross} alt="" /></h2>
                 </div>
@@ -64,7 +69,24 @@ const Projects = () => {
                             <div className='m-2 md:flex w-full h-full'>
                                 <div className='w-full md:w-8/12 text-left py-16 md:py-2 px-4 md:px-16  h-full border-r border-border-bg '>
                                     <h2 className='text-[30px] md:text-[36px] font-semibold '>{detailsProject.title}</h2>
-                                    <img src={detailsProject.thambnail} alt="" className='my-2 h-[400px] w-full' />
+                                   
+                                    <Swiper
+                                        spaceBetween={50}
+                                        slidesPerView={1}
+                                        onSlideChange={() => console.log('slide change')}
+                                        autoplay={{
+                                            delay: 2000,
+                                            disableOnInteraction: false,
+                                        }}
+                                        modules={[Autoplay, Pagination, Navigation]}
+                                        onSwiper={(swiper) => console.log(swiper)}
+                                    >
+                                        {
+                                            detailsProject.images.map(img => <SwiperSlide> <img src={img.img} alt="" className='my-2 h-[200px] md:h-[400px] w-full rounded-lg' /></SwiperSlide>)
+                                        }
+                                        
+                                      
+                                    </Swiper>
                                     <div className='md:flex my-10'>
                                         <h2 className='text-xl'>Overview:</h2>
                                         <p className='px-2'>{detailsProject.overview}</p>
@@ -87,15 +109,15 @@ const Projects = () => {
                                         <h2 className='text-xl'>Challenges:</h2>
                                         <ul className='px-2'>
                                             {
-                                                detailsProject.challanges.map(challange => <li className='flex px-10 my-4'><img src={staroutline} alt="" /> <span className='px-2 text-lg'>{challange.text} </span></li>)
+                                                detailsProject.challanges.map(challange => <li className='flex items-start px-10 my-4'><img src={staroutline} alt="" /> <span className='px-2 text-lg'>{challange.text} </span></li>)
                                             }
                                         </ul>
                                     </div>
                                     <div className=' my-10'>
                                         <h2 className='text-xl'>Features:</h2>
                                         <ul className='px-2'>
-                                        {
-                                                detailsProject.features.map(feature => <li className='flex px-10 my-4'><img src={starfill} alt="" /> <span className='px-2 text-lg'>{feature.text} </span></li>)
+                                            {
+                                                detailsProject.features.map(feature => <li className='flex items-start px-10 my-4'><img src={starfill} alt="" /> <span className='px-2 text-lg'>{feature.text} </span></li>)
                                             }
                                         </ul>
                                     </div>
