@@ -10,10 +10,10 @@ const Home = () => {
         <div className=''>
           <h2 className='text-lg font-medium'>Hi everybody. I am</h2>
           <h1 className='text-[62px]  leading-[62px]'>Mahmudul Hasan MK</h1>
-          <p className='text-text-green text-xl'> > Front-end developer</p>
+          <p className='text-text-green text-xl'> {`>`} Front-end developer</p>
         </div>
         <div className='text-sm my-10'>
-          <p className='text-text hidden md:block '>// Press Enter to continue:</p>
+          <p className='text-text hidden md:block '> // Press Enter to continue:</p>
           <p className='text-text '>// find my profile on Github:</p>
           <p><span className='text-text-blue'>const</span> <span className='text-text-green'>githubLink</span> = <span className='text-text-orange'>“https://github.com/mkmahmud”</span></p>
         </div>

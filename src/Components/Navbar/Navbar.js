@@ -42,7 +42,7 @@ const Navbar = () => {
                 <li className={`nav-links rounded-Border ${selectedPage === 'projects' ? 'navActive' : ''}`}><Link to='/projects' onClick={() => setselectedPage('projects')}>_Projects</Link></li>
                 <li className={`nav-links rounded-Border ${selectedPage === 'contact' ? 'navActive' : ''}`}><Link to='/contact' onClick={() => setselectedPage('contact')}>_Contact-me</Link></li>
                 <li className='nav-links rounded-Border grow text-right'></li>
-                <li className='nav-links rounded-Border'><Link to='/'>Resume</Link></li>
+                <li className={`nav-links rounded-Border ${selectedPage === 'resume' ? 'navActive' : ''}`}><Link to='/resume' onClick={() => setselectedPage('resume')}>Resume</Link></li>
             </ul>
 
         </div>

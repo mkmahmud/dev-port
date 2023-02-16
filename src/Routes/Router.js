@@ -8,6 +8,7 @@ import About from '../Pages/About/About';
 import Contact from '../Pages/Contact/Contact';
 import Home from '../Pages/Home/Home';
 import Projects from '../Pages/Projects/Projects';
+import Resume from '../Pages/Resume/Resume';
 
 const Router = () => {
 
@@ -31,6 +32,10 @@ const Router = () => {
                 {
                     path:'/contact',
                     element: <Contact></Contact>
+                },
+                {
+                    path:'/resume',
+                    element: <Resume></Resume>
                 }
             ]
 
