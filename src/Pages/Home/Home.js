@@ -1,6 +1,6 @@
 import React from 'react';
 import './Home.css';
-import snakeGame from '../../Assets/game.png';
+import TextAnimation from "react-text-animations";
 import user from '../../Assets/user.png';
 
 const Home = () => {
@@ -10,7 +10,18 @@ const Home = () => {
         <div className=''>
           <h2 className='text-lg font-medium'>Hi everybody. I am</h2>
           <h1 className='text-[62px]  leading-[62px]'>Mahmudul Hasan MK</h1>
-          <p className='text-text-green text-xl'> {`>`} Front-end developer</p>
+          <p className='text-text-green text-xl flex'> <span className='mx-2'>{`>`} </span>
+            <TextAnimation.Slide
+              target="Merciful"
+              text={[' Front-End Developer', 'Full Stack Developer', 'Lead Developer']}
+              animation={{
+                duration:1000,
+                delay:2000,
+                timingFunction:'ease-out',
+            }}
+            >
+              I am a&nbsp;
+            </TextAnimation.Slide></p>
         </div>
         <div className='text-sm my-10'>
           <p className='text-text hidden md:block '> // Press Enter to continue:</p>
@@ -19,7 +30,7 @@ const Home = () => {
         </div>
       </div>
       <div className=''>
-          <img src={user} className='h-[300px] w-[300px] block mx-auto my-10 md:h-[500px] md:w-[500px] rounded-full border-b-4 image-shadow border-text-orange'  alt="" />
+        <img src={user} className='h-[300px] w-[300px] block mx-auto my-10 md:h-[500px] md:w-[500px] rounded-full border-b-4 image-shadow border-text-orange' alt="" />
       </div>
     </div>
   );

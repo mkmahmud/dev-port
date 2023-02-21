@@ -116,7 +116,7 @@ const Contact = () => {
                                     </div>
                                     <div className='my-4'>
                                         <p className='py-2.5'>_message:</p>
-                                        <textarea required name="message" value={state.message} onChange={handleInputChange} className='bg-cardBG border border-border-bg h-[141px] rounded-lg w-[291px] md:w-[371px] outline-0 px-4' id="" cols="30" rows="20"></textarea>
+                                        <textarea maxlength="200" required name="message" value={state.message} onChange={handleInputChange} className='bg-cardBG border border-border-bg h-[141px] rounded-lg w-[291px] md:w-[371px] outline-0 px-4' id="" cols="30" rows="20"></textarea>
                                     </div>
                                     <button type='submit' className='bg-button px-3.5 py-2.5 rounded-lg text-sm text-white'>submit-message</button>
                                 </form>
@@ -145,7 +145,7 @@ const Contact = () => {
                                 <li><span className='px-6 text-text'>&nbsp;<span>3</span></span> <span className='text-text-purple'>const</span> message <span className='text-text-purple'>=</span> <span className='text-text'>{`{`}</span> </li>
                                 <li><span className='px-6 text-text'>&nbsp;<span>4</span></span> <span className='pl-4'>name</span><span className='text-text'>:</span> <span className='text-text-yellow'>"{state.name}"</span><span className='text-text'>,</span></li>
                                 <li><span className='px-6 text-text'>&nbsp;<span>5</span></span> <span className='pl-4'>email</span><span className='text-text'>:</span> <span className='text-text-yellow'>"{state.email}"</span><span className='text-text'>,</span></li>
-                                <li><span className='px-6 text-text'>&nbsp;<span>6</span></span> <span className='pl-4'>message</span><span className='text-text'>:</span> <span className='text-text-yellow'>"{state.message}"</span><span className='text-text'>,</span></li>
+                                <li><span className='px-6 text-text'>&nbsp;<span>6</span></span> <span className='pl-4'>message</span><span className='text-text'>:</span> <span className='text-text-yellow w-[300px]'>"{state.message}"</span><span className='text-text'>,</span></li>
                                 <li><span className='px-6 text-text'>&nbsp;<span>7</span></span> <span className='text-text pl-4'>date:</span> <span className='text-text-yellow'>"{formattedDate}"</span></li>
                                 <li><span className='px-6 text-text'>&nbsp;<span>8</span></span> <span className='text-text'>{`}`}</span></li>
                                 <li><span className='px-6 text-text'>&nbsp;<span>9</span></span> </li>
