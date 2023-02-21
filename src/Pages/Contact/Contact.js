@@ -10,8 +10,7 @@ import cross from '../../Assets/icons/close-icon.png';
 
 const initialState = {
     name: '',
-    email: '',
-    password: ''
+    email: ''
 };
 
 function reducer(state, action) {
@@ -42,8 +41,22 @@ const Contact = () => {
 
     const handleSubmit = event => {
         event.preventDefault();
-        dispatch({ type: 'reset' });
-        setOpenMesege(false)
+
+        fetch('http://localhost:5000/message', {
+            method: 'post',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(state)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.acknowledged) {
+                    dispatch({ type: 'reset' });
+                    setOpenMesege(false)
+                }
+            })
+
 
     };
 
@@ -52,7 +65,7 @@ const Contact = () => {
     const day = currentDate.toLocaleDateString('en-US', { weekday: 'short' });
     const date = currentDate.toLocaleDateString('en-US', { day: '2-digit', month: 'short' });
     const formattedDate = `${year}, ${day} ${date}`;
-    
+
     return (
         <div className='md:flex h-full '>
             <div className='md:w-2/12 border-r border-border-bg md:flex '>
@@ -95,15 +108,15 @@ const Contact = () => {
                                 <form className='text-left text-text mx-6' onSubmit={handleSubmit}>
                                     <div className='my-4'>
                                         <p className='py-2.5'>_name:</p>
-                                        <input type="text" value={state.name} onChange={handleInputChange} className='bg-cardBG border border-border-bg h-[41px] rounded-lg w-[291px] md:w-[371px] outline-0 px-4' name="name" id="" />
+                                        <input required type="text" value={state.name} onChange={handleInputChange} className='bg-cardBG border border-border-bg h-[41px] rounded-lg w-[291px] md:w-[371px] outline-0 px-4' name="name" id="" />
                                     </div>
                                     <div className='my-4'>
                                         <p className='py-2.5'>_email:</p>
-                                        <input type="text" value={state.email} onChange={handleInputChange} className='bg-cardBG border border-border-bg h-[41px] rounded-lg w-[291px] md:w-[371px] outline-0 px-4' name="email" id="" />
+                                        <input type="text" required value={state.email} onChange={handleInputChange} className='bg-cardBG border border-border-bg h-[41px] rounded-lg w-[291px] md:w-[371px] outline-0 px-4' name="email" id="" />
                                     </div>
                                     <div className='my-4'>
                                         <p className='py-2.5'>_message:</p>
-                                        <textarea name="message" value={state.message} onChange={handleInputChange} className='bg-cardBG border border-border-bg h-[141px] rounded-lg w-[291px] md:w-[371px] outline-0 px-4' id="" cols="30" rows="20"></textarea>
+                                        <textarea required name="message" value={state.message} onChange={handleInputChange} className='bg-cardBG border border-border-bg h-[141px] rounded-lg w-[291px] md:w-[371px] outline-0 px-4' id="" cols="30" rows="20"></textarea>
                                     </div>
                                     <button type='submit' className='bg-button px-3.5 py-2.5 rounded-lg text-sm text-white'>submit-message</button>
                                 </form>

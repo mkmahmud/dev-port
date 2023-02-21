@@ -1,0 +1,11 @@
+.resume-head{
+    background: linear-gradient(90deg, #FE79B9, #0A66C2);
+}
+.resume-content{
+    background: linear-gradient(45deg, black, transparent, black);
+}
+
+.resume::-webkit-scrollbar {
+    width: 10px; /* Set the width of the scrollbar */
+    height: 0px;
+  }
