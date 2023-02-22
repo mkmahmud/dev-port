@@ -8,9 +8,11 @@ import Main from '../Layouts/Main/Main';
 import About from '../Pages/About/About';
 import Contact from '../Pages/Contact/Contact';
 import Home from '../Pages/Home/Home';
+import Login from '../Pages/Login/Login';
 import NotFound from '../Pages/NotFound/NotFound';
 import Projects from '../Pages/Projects/Projects';
 import Resume from '../Pages/Resume/Resume';
+import PrivateRoutes from './PrivateRoutes';
 
 const Router = () => {
 
@@ -43,8 +45,12 @@ const Router = () => {
 
         },
         {
-            path:'/dashboard',
-            element:<Dashboard></Dashboard>
+            path: '/dashboard',
+            element:<PrivateRoutes> <Dashboard></Dashboard></PrivateRoutes>
+        },
+        {
+            path: '/login',
+            element: <Login></Login>
         },
         {
             path: '*',

@@ -32,7 +32,7 @@ const Projects = () => {
 
 
     useEffect(() => {
-        fetch('http://localhost:5000/projects')
+        fetch('https://new-server-mahmudulmk4-gmailcom.vercel.app/projects')
             .then(res => res.json())
             .then(data => setProjects(data))
     }, [])

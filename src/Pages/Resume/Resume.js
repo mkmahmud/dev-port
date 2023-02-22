@@ -65,6 +65,16 @@ const Resume = () => {
                 </div>
             </div>
             <dir className='resume-body text-left text-[14px] mx-2 md:mx-10'>
+
+                {/* Overview */}
+                <div className='md:flex justify-around border-b border-[#334155] py-6 my-6' >
+                    <h2 className='md:w-2/12'><strong>OverView:</strong></h2>
+                    <div className='md:w-10/12  '>
+                        <h2>As a React developer, your primary responsibility would be to use the React library to develop user interfaces for web applications. This would involve writing code in JavaScript and JSX (a syntax extension for JavaScript), using React components and hooks to create reusable UI elements, and managing state and data flow within the application.</h2>
+                        
+                    </div>
+
+                </div>
                 {/* Education */}
                 <div className='md:flex justify-around border-b border-[#334155] py-6 my-6' >
                     <h2 className='md:w-2/12'><strong>Education:</strong></h2>

@@ -10,7 +10,7 @@ const Dashboard = () => {
     const [detailsMessage, setDetailsMassage] = useState({});
 
     useEffect(() => {
-        fetch('http://localhost:5000/getMessage')
+        fetch('https://new-server-mahmudulmk4-gmailcom.vercel.app/getMessage')
             .then(res => res.json())
             .then(data => setMessages(data))
     }, [])

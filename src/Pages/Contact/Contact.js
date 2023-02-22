@@ -42,7 +42,7 @@ const Contact = () => {
     const handleSubmit = event => {
         event.preventDefault();
 
-        fetch('http://localhost:5000/message', {
+        fetch('https://new-server-mahmudulmk4-gmailcom.vercel.app/message', {
             method: 'post',
             headers: {
                 'content-type': 'application/json'
