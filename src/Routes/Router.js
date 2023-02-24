@@ -12,6 +12,7 @@ import Login from '../Pages/Login/Login';
 import NotFound from '../Pages/NotFound/NotFound';
 import Projects from '../Pages/Projects/Projects';
 import Resume from '../Pages/Resume/Resume';
+import Skills from '../Pages/Skills/Skills';
 import PrivateRoutes from './PrivateRoutes';
 
 const Router = () => {
@@ -38,6 +39,10 @@ const Router = () => {
                     element: <Contact></Contact>
                 },
                 {
+                    path:'/skills',
+                    element:<Skills></Skills>
+                },
+                {
                     path: '/resume',
                     element: <Resume></Resume>
                 }
@@ -46,7 +51,7 @@ const Router = () => {
         },
         {
             path: '/dashboard',
-            element:<PrivateRoutes> <Dashboard></Dashboard></PrivateRoutes>
+            element:<Dashboard></Dashboard>
         },
         {
             path: '/login',

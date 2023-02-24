@@ -36,3 +36,8 @@ code {
 .transition{
   transition: 1s ease-in-out;
 }
+
+.hidenScroll::-webkit-scrollbar {
+  width: 10px; /* Set the width of the scrollbar */
+  height: 0px;
+}

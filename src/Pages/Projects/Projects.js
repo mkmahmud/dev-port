@@ -26,6 +26,9 @@ const Projects = () => {
     // Projects
     const [projects, setProjects] = useState([]);
 
+    // Loading
+    const [loading, setLoading] = useState(true);
+
 
     // Details Projects
     const [detailsProject, setDetailsProject] = useState({});
@@ -34,7 +37,10 @@ const Projects = () => {
     useEffect(() => {
         fetch('https://new-server-mahmudulmk4-gmailcom.vercel.app/projects')
             .then(res => res.json())
-            .then(data => setProjects(data))
+            .then(data => {
+                setProjects(data);
+                setLoading(false)
+            })
     }, [])
 
 
@@ -69,7 +75,7 @@ const Projects = () => {
                             <div className='m-2 md:flex w-full h-full'>
                                 <div className='w-full md:w-8/12 text-left py-16 md:py-2 px-4 md:px-16  h-full border-r border-border-bg '>
                                     <h2 className='text-[30px] md:text-[36px] font-semibold '>{detailsProject.title}</h2>
-                                   
+
                                     <Swiper
                                         spaceBetween={50}
                                         slidesPerView={1}
@@ -84,12 +90,20 @@ const Projects = () => {
                                         {
                                             detailsProject.images.map(img => <SwiperSlide> <img src={img.img} alt="" className='my-2 h-[200px] md:h-[400px] w-full rounded-lg' /></SwiperSlide>)
                                         }
-                                        
-                                      
+
+
                                     </Swiper>
                                     <div className='md:flex my-10'>
                                         <h2 className='text-xl'>Overview:</h2>
                                         <p className='px-2'>{detailsProject.overview}</p>
+                                    </div>
+                                    <div className='md:flex my-10'>
+                                        <h2 className='text-xl'>Timeline:</h2>
+                                        <p className='px-2'>2021-2022 (1year)</p>
+                                    </div>
+                                    <div className='md:flex my-10'>
+                                        <h2 className='text-xl'>Team:</h2>
+                                        <p className='px-2'>4 developer worked on this project. I was main developer</p>
                                     </div>
                                     <div className='md:flex my-10'>
                                         <h2 className='text-xl'>Technologies:</h2>
@@ -130,6 +144,15 @@ const Projects = () => {
                         </div>
                         :
                         <div className='grid grid-cols-1 md:grid-cols-3 '>
+                            {
+                                loading &&
+                                <div className='absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2'>
+                                    <div class=" animate-spin inline-block w-20 h-20 border-[3px] border-current border-t-transparent text-blue-600 rounded-full" role="status" aria-label="loading">
+                                        <span class="sr-only">Loading...</span>
+                                    </div>
+
+                                </div>
+                            }
                             {
                                 projects && projects.map(project => <ProjectsCard data={project} setDetailsProject={setDetailsProject} setopenProject={setopenProject} key={project._id}> </ProjectsCard>)
                             }

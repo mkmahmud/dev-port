@@ -1,9 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Navigate,  useNavigate } from 'react-router-dom';
 
 const Login = () => {
 
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+
+    useEffect(()=>{
+            if(localStorage.getItem('user') === 'logged'){
+                navigate('/dashboard')
+            }
+    },[navigate])
 
     const handleFormSubmit = (e) => {
         e.preventDefault();
@@ -16,7 +22,7 @@ const Login = () => {
             password: password
         }
 
-        fetch('http://localhost:5000/log', {
+        fetch('https://new-server-mahmudulmk4-gmailcom.vercel.app/log', {
             method: 'post',
             headers: {
                 'content-type': 'application/json'
@@ -25,11 +31,12 @@ const Login = () => {
         })
             .then(res => res.json())
             .then(data => {
+                navigate('/dashboard')
                 if(data){
-                    console.log(data)
+                   
                     localStorage.setItem('user', 'logged')
-                    navigate('/dashboard')
                 }
+        
             })
 
     };

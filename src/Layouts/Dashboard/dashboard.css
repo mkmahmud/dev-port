@@ -1,0 +1,4 @@
+.dashboard::-webkit-scrollbar {
+    width: 10px; /* Set the width of the scrollbar */
+    height: 0px;
+  }

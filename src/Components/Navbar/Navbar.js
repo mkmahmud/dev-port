@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
 import nav from '../../Assets/icons/nav.png';
 import cross from '../../Assets/icons/nav-cross.png';
-import { Link } from 'react-router-dom';
-import Footer from '../Footer/Footer';
+import { Link, useLocation } from 'react-router-dom';
 import './Navbar.css';
 
 const Navbar = () => {
 
-    // Current Page 
-    const [selectedPage, setselectedPage] = useState('home')
+
 
     const [mobileMenus, setmobileMenus] = useState(false)
+
+
+    const location = useLocation();
+    const isActive = (path) => location.pathname === path;
 
     return (
 
@@ -31,18 +33,20 @@ const Navbar = () => {
                     <li className='nav-links '><Link to='/'>_Home</Link></li>
                     <li className='nav-links'><Link to='/about'>_About-Me</Link></li>
                     <li className='nav-links'><Link to='/projects'>_Projects</Link></li>
+                    <li className='nav-links'><Link to='/skills'>_Skills</Link></li>
                     <li className='nav-links'><Link to='/'>_Contact-me</Link></li>
                 </ul>
             </div>
 
 
             <ul className='flex md:w-10/12 hidden md:flex'>
-                <li className={`nav-links rounded-Border ${selectedPage === 'home' ? 'navActive' : ''}`}><Link to='/' onClick={() => setselectedPage('home')}>_Home</Link></li>
-                <li className={`nav-links rounded-Border ${selectedPage === 'about' ? 'navActive' : ''}`}><Link to='/about' onClick={() => setselectedPage('about')}>_About-Me</Link></li>
-                <li className={`nav-links rounded-Border ${selectedPage === 'projects' ? 'navActive' : ''}`}><Link to='/projects' onClick={() => setselectedPage('projects')}>_Projects</Link></li>
-                <li className={`nav-links rounded-Border ${selectedPage === 'contact' ? 'navActive' : ''}`}><Link to='/contact' onClick={() => setselectedPage('contact')}>_Contact-me</Link></li>
+                <li className={`nav-links rounded-Border ${isActive('/') ? 'navActive' : ''}`}><Link to='/'>_Home</Link></li>
+                <li className={`nav-links rounded-Border ${isActive('/about')  ? 'navActive' : ''}`}><Link to='/about'>_About-Me</Link></li>
+                <li className={`nav-links rounded-Border ${isActive('/projects') ? 'navActive' : ''}`}><Link to='/projects'>_Projects</Link></li>
+                <li className={`nav-links rounded-Border ${isActive('/skills') ? 'navActive' : ''}`}><Link to='/skills'>_Skills</Link></li>
+                <li className={`nav-links rounded-Border ${isActive('/contact') ? 'navActive' : ''}`}><Link to='/contact'>_Contact-me</Link></li>
                 <li className='nav-links rounded-Border grow text-right'></li>
-                <li className={`nav-links rounded-Border ${selectedPage === 'resume' ? 'navActive' : ''}`}><Link to='/resume' onClick={() => setselectedPage('resume')}>Resume</Link></li>
+                <li className={`nav-links rounded-Border ${isActive('/resume') ? 'navActive' : ''}`}><Link to='/resume'>_Resume</Link></li>
             </ul>
 
         </div>

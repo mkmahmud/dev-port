@@ -84,7 +84,8 @@ const About = () => {
                             &&
                             <ul className='text-text text-left py-4 px-6'>
                                 <li><span className='px-6'>&nbsp;1</span> <span>/**</span></li>
-                                <li><span className='px-6'>&nbsp;2</span> <span> * Education</span></li>
+                                <li><span className='px-6'>&nbsp;2</span> <span> * Dhaka University (Bachelor of computer science)</span></li>
+                                <li><span className='px-6'>&nbsp;1</span> <span>* 2022-2022</span></li>
                             </ul>
                         }
                             {
