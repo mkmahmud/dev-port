@@ -1,57 +1,91 @@
-import React, { useState } from 'react';
-import nav from '../../Assets/icons/nav.png';
-import cross from '../../Assets/icons/nav-cross.png';
-import { Link, useLocation } from 'react-router-dom';
-import './Navbar.css';
-import logo from '../../Assets/logo.png';
+import React, { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+import "./Navbar.css";
+import { useGetUserQuery } from "../../redux/features/api/createAPI";
+import nav from "../../Assets/icons/nav.png";
+import cross from "../../Assets/icons/nav-cross.png";
 
 const Navbar = () => {
+  const { data } = useGetUserQuery("mahmudulmk4@gmail.com");
+  const [mobileMenus, setMobileMenus] = useState(false);
+  const location = useLocation();
+  const isActive = (path) => location.pathname === path;
 
+  const toggleMobileMenus = () => {
+    setMobileMenus(!mobileMenus);
+  };
 
-
-    const [mobileMenus, setmobileMenus] = useState(false)
-
-
-    const location = useLocation();
-    const isActive = (path) => location.pathname === path;
-
-    return (
-
-        <div className='md:flex  '>
-
-            <div className='flex justify-between items-center p-[18px] border-b border-border-bg md:w-2/12'>
-                <h2 className='text-text font-[450] flex items-center'><img src={logo} className='h-6 w-6 mx-2' alt="" /> Mahmudul Hasan MK</h2>
-                <div className='md:hidden'>
-                    {
-                        mobileMenus ? <img onClick={() => { setmobileMenus(!mobileMenus) }} src={cross} alt="" /> : <img onClick={() => { setmobileMenus(!mobileMenus) }} src={nav} alt="" />
-                    }
-                </div>
-            </div>
-
-
-            <div className={`${mobileMenus ? 'block' : 'hidden'} absolute w-full bg-sec-bg h-[90%] flex justify-between flex-col transition z-10` }>
-                <ul className=''>
-                    <li className='nav-links '><Link to='/'>_Home</Link></li>
-                    <li className='nav-links'><Link to='/about'>_About-Me</Link></li>
-                    <li className='nav-links'><Link to='/projects'>_Projects</Link></li>
-                    <li className='nav-links'><Link to='/skills'>_Skills</Link></li>
-                    <li className='nav-links'><Link to='/'>_Contact-me</Link></li>
-                </ul>
-            </div>
-
-
-            <ul className='flex md:w-10/12 hidden md:flex'>
-                <li className={`nav-links rounded-Border ${isActive('/') ? 'navActive' : ''}`}><Link to='/'>_Home</Link></li>
-                <li className={`nav-links rounded-Border ${isActive('/about')  ? 'navActive' : ''}`}><Link to='/about'>_About-Me</Link></li>
-                <li className={`nav-links rounded-Border ${isActive('/projects') ? 'navActive' : ''}`}><Link to='/projects'>_Projects</Link></li>
-                <li className={`nav-links rounded-Border ${isActive('/skills') ? 'navActive' : ''}`}><Link to='/skills'>_Skills</Link></li>
-                <li className={`nav-links rounded-Border ${isActive('/contact') ? 'navActive' : ''}`}><Link to='/contact'>_Contact-me</Link></li>
-                <li className='nav-links rounded-Border grow text-right'></li>
-                <li className={`nav-links rounded-Border ${isActive('/resume') ? 'navActive' : ''}`}><Link to='/resume'>_Resume</Link></li>
-            </ul>
-
+  return (
+    <div className="md:flex">
+      {/* Logo and hambargar */}
+      <div className="flex justify-between items-center p-[18px] border-b border-border-bg md:w-2/12">
+        {data?.data && (
+          <h2 className="text-text font-[450] flex items-center">
+            <img src={data?.data?.userLogo} className="h-6 w-6 mx-2" alt="" />{" "}
+            {data?.data?.userName}
+          </h2>
+        )}
+        <div className="md:hidden" onClick={toggleMobileMenus}>
+          <img src={mobileMenus ? cross : nav} alt="" />
         </div>
-    );
+      </div>
+
+      {/* Mobile Menus */}
+      <div
+        className={`${
+          mobileMenus ? "block" : "hidden"
+        } fixed w-full bg-[#011627eb] top-0 h-screen flex flex-col justify-center items-center transition z-10`}
+      >
+        <button
+          className="absolute top-0 left-1/2 transform -translate-x-1/2 mt-10 transition duration-300 ease-in-out hover:text-red-500"
+          onClick={toggleMobileMenus}
+        >
+          <img src={mobileMenus ? cross : nav} alt="" />
+        </button>
+        <ul className="w-full flex flex-col justify-center items-center p-0">
+          {["/", "/about", "/projects", "/skills", "/contact"].map((path) => (
+            <li
+              key={path}
+              className={`nav-links w-full text-center py-4 ${
+                isActive(path) ? "navActive" : ""
+              } `}
+              onClick={toggleMobileMenus}
+            >
+              <Link to={path}>
+                {path === "/" ? "_Home" : `_${path.substring(1)}`}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
+      {/* Desktop Menus */}
+      <ul className="flex md:w-10/12 hidden md:flex">
+        {["/", "/about", "/projects", "/skills", "/contact"].map((path) => (
+          <li
+            key={path}
+            className={`nav-links rounded-Border ${
+              isActive(path) ? "navActive" : ""
+            }`}
+          >
+            <Link to={path}>
+              {path === "/" ? "_Home" : `_${path.substring(1)}`}
+            </Link>
+          </li>
+        ))}
+        {data?.data?.resume && (
+          <li className="nav-links rounded-Border flex-grow text-right">
+            <a
+              href={data?.data?.resume}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              _Resume
+            </a>
+          </li>
+        )}
+      </ul>
+    </div>
+  );
 };
 
 export default Navbar;
