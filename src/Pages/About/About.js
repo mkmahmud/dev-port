@@ -18,7 +18,7 @@ import starts from '../../Assets/icons/Star.png';
 const About = () => {
 
     // Show File
-    const [showedFile, setShowdFile] = useState('Profile.mk');
+    const [showedFile, setShowdFile] = useState('Profile');
     console.log(showedFile)
 
     return (
@@ -36,9 +36,9 @@ const About = () => {
                             <h2 className='text-lg font-normal'>personal-info</h2>
                         </div>
                         <ul className='p-2'>
-                            <PersonalInfo folder={folderOrange} content='bio' OpenStatus={true} file={{ fileName: 'Profile.mk', setShowdFile }}></PersonalInfo>
-                            <PersonalInfo folder={folderGreen} content='interests' file={{ fileName: 'Likes.mk', setShowdFile }}></PersonalInfo>
-                            <PersonalInfo folder={folderBlue} content='educations' file={{ fileName: 'Education.mk', setShowdFile }}></PersonalInfo>
+                            <PersonalInfo folder={folderOrange} content='bio' OpenStatus={true} file={{ fileName: 'Profile', setShowdFile }}></PersonalInfo>
+                            <PersonalInfo folder={folderGreen} content='Experience' file={{ fileName: 'Projects', setShowdFile }}></PersonalInfo>
+                            <PersonalInfo folder={folderBlue} content='educations' file={{ fileName: 'Education', setShowdFile }}></PersonalInfo>
                         </ul>
                     </div>
                     <div className='my-4'>
@@ -49,51 +49,47 @@ const About = () => {
 
                         <ul className='p-2'>
                             <li className='my-2 flex items-center  text-text text-sm'><img src={email} className='pr-2' alt="" /><span>mahmudulmk4@gmail.com</span></li>
-                            <li className='my-2 flex items-center  text-text '><img src={phone} className='pr-2' alt="" /><span>+88017-4150-3127</span></li>
+                            <li className='my-2 flex items-center  text-text '><img src={phone} className='pr-2' alt="" /><span>+880 13095 48540</span></li>
                         </ul>
                     </div>
                 </div>
             </div>
             <div className='md:w-10/12 h-full overflow-hidden'>
                 <div className='p-2 text-left border-b border-border-bg'>
-                    <h2 className='text-base text-text flex '><span>{showedFile === 'Profile.mk' && 'Profile'} {showedFile === 'Education.mk' && 'Education'} {showedFile === 'Likes.mk' && 'Likes'}</span> <img onClick={() => {setShowdFile('Profile.mk')}} className='px-10' src={cross} alt="" /></h2>
+                    <h2 className='text-base text-text flex '><span>{showedFile === 'Profile' && 'Profile'} {showedFile === 'Education' && 'Education'} {showedFile === 'Projects' && 'Projects'}</span> <img onClick={() => {setShowdFile('Profile')}} className='px-10' src={cross} alt="" /></h2>
                 </div>
                 <div className='md:flex md:h-full'>
                     <div className='md:w-1/2 border-r border-border-bg relative'>
                         {
-                            showedFile === 'Profile.mk'
+                            showedFile === 'Profile'
                             &&
                             <ul className='text-text text-left py-4 px-6 overflow-scroll h-[80vh] about-profile'>
-                                <li><span className='px-6'>&nbsp;1</span> <span>/** About Me ** /</span></li>
-                                <li className='flex'><span className='px-6'>&nbsp;2</span> <span>A MERN (MongoDB, Express, React, Node.js) and PHP (Hypertext Preprocessor) developer is a skilled software professional who specializes in utilizing the MERN stack and PHP technology to design and develop web applications. These technologies are widely recognized for their ability to create dynamic, interactive, and scalable web applications that meet the demands of modern businesses. </span></li>
+                                <li><span className='px-6'>&nbsp;1</span><span>/** About Me ** /</span></li>
+                                <li className='flex'><span className='px-6'>&nbsp;2</span> <span>As a MERN stack developer, I am a seasoned professional with over 3years of experience in the industry. My passion for coding and problem-solving has driven me to excel in my field, and I pride myself on my ability to create elegant, efficient, and user-friendly web applications.</span></li>
                                 <li className='flex'><span className='px-6'>&nbsp;3</span> <span> * </span></li>
-                                <li className='flex'><span className='px-6'>&nbsp;4</span> <span>A MERN developer possesses expertise in developing full-stack web applications by utilizing the MERN stack, which comprises MongoDB, a NoSQL database; Express.js, a Node.js web application framework; React, a JavaScript library for building user interfaces; and Node.js, an open-source, cross-platform JavaScript runtime environment. By leveraging the MERN stack, developers can create scalable, efficient, and responsive web applications. </span></li>
+                                <li className='flex'><span className='px-6'>&nbsp;4</span> <span>I have a strong background in both front-end and back-end development, and my expertise in MERN stack technologies allows me to create complex, dynamic web applications that meet the needs of even the most demanding clients.</span></li>
                                 <li className='flex'><span className='px-6'>&nbsp;5</span> <span> * </span></li>
-                                <li className='flex'><span className='px-6'>&nbsp;6</span> <span>On the other hand, a PHP developer specializes in using PHP programming language to create server-side applications. PHP is a popular scripting language that is commonly used to create dynamic web pages, e-commerce websites, and web applications.</span></li>
+                                <li className='flex'><span className='px-6'>&nbsp;6</span> <span>But what really sets me apart is my ability to communicate effectively with clients and colleagues alike. I believe that great software is the result of collaboration and teamwork, and I am committed to working closely with my clients to ensure that their needs are met and their expectations exceeded.</span></li>
                                 <li className='flex'><span className='px-6'>&nbsp;7</span> <span> * </span></li>
-                                <li className='flex'><span className='px-6'>&nbsp;8</span> <span>A developer who is proficient in both MERN and PHP technologies can create highly functional, feature-rich, and scalable web applications. They can leverage the power of MERN stack to create fast, responsive, and highly interactive user interfaces, while using PHP to build the backend of the application.</span></li>
-                                <li className='flex'><span className='px-6'>&nbsp;9</span> <span> * </span></li>
-                                <li className='flex'><span className='px-6'>10</span> <span>Some of the key skills that a MERN and PHP developer should have include proficiency in JavaScript, React, Node.js, Express, MongoDB, PHP, MySQL, and other relevant web development technologies. They should also have knowledge of web development best practices, database design, and web security.</span></li>
-                                <li className='flex'><span className='px-6'>11</span> <span> *  </span></li>
-                                <li className='flex'><span className='px-6'>12</span> <span>Overall, a MERN and PHP developer is a highly skilled professional who can create sophisticated web applications that can meet the needs of businesses of all sizes.</span></li>
-                                <li className='flex'><span className='px-6'>13</span> <span> */</span></li>
+                                <li className='flex'><span className='px-6'>&nbsp;8</span> <span>In my free time, I enjoy staying up-to-date with the latest trends and technologies in the world of web development, as well as spending time with my family and exploring the great outdoors. If you're looking for a  MERN stack developer who is passionate about his work, dedicated to his clients, and always striving to be the best, look no further than me.</span></li>
+                                <li className='flex'><span className='px-6'>&nbsp;9</span> <span> */ </span></li>
                             </ul>
                         }
                         {
-                            showedFile === 'Education.mk'
+                            showedFile === 'Education'
                             &&
                             <ul className='text-text text-left py-4 px-6'>
                                 <li><span className='px-6'>&nbsp;1</span> <span>/**</span></li>
-                                <li><span className='px-6'>&nbsp;2</span> <span> * Dhaka University (Bachelor of computer science)</span></li>
-                                <li><span className='px-6'>&nbsp;1</span> <span>* 2022-2022</span></li>
+                                <li><span className='px-6'>&nbsp;2</span> <span> * Uttara University, Dhaka (Bachelor's degree)</span></li>
+                                <li><span className='px-6'>&nbsp;1</span> <span>* 2020 - present</span></li>
                             </ul>
                         }
                             {
-                            showedFile === 'Likes.mk'
+                            showedFile === 'Projects'
                             &&
                             <ul className='text-text text-left py-4 px-6'>
                                 <li><span className='px-6'>&nbsp;1</span> <span>/**</span></li>
-                                <li><span className='px-6'>&nbsp;2</span> <span> * Likes</span></li>
+                                <li><span className='px-6'>&nbsp;2</span> <span> * Projects</span></li>
                             </ul>
                         }
 
@@ -113,7 +109,7 @@ const About = () => {
                                     <div className='flex items-center'>
                                         <img src={profile} className='h-12 w-12 rounded-full' alt="" />
                                         <div>
-                                            <p>@mkmahmud</p>
+                                            <p>mkmahmud</p>
                                             <p>created 5 months ago</p>
                                         </div>
                                     </div>
@@ -139,8 +135,8 @@ const About = () => {
                                     <div className='flex items-center'>
                                         <img src={profile} className='h-12 w-12 rounded-full' alt="" />
                                         <div>
-                                            <p>@mkmahmud</p>
-                                            <p>created 5 months ago</p>
+                                            <p>mkmahmud</p>
+                                            <p>created 8 months ago</p>
                                         </div>
                                     </div>
                                     <div className='flex space-x-4'>

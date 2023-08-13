@@ -8,9 +8,11 @@ import cross from '../../Assets/icons/close-icon.png';
 
 
 
+
 const initialState = {
     name: '',
-    email: ''
+    email: '',
+    recivedBy:'Jeffery'
 };
 
 function reducer(state, action) {
@@ -42,20 +44,20 @@ const Contact = () => {
     const handleSubmit = event => {
         event.preventDefault();
 
-        fetch('https://new-server-mahmudulmk4-gmailcom.vercel.app/message', {
-            method: 'post',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(state)
-        })
-            .then(res => res.json())
-            .then(data => {
-                if (data.acknowledged) {
-                    dispatch({ type: 'reset' });
-                    setOpenMesege(false)
-                }
-            })
+        // fetch('https://jefery-babarfarooqi52-gmailcom.vercel.app/message', {
+        //     method: 'post',
+        //     headers: {
+        //         'content-type': 'application/json'
+        //     },
+        //     body: JSON.stringify(state)
+        // })
+        //     .then(res => res.json())
+        //     .then(data => {
+        //         if (data.acknowledged) {
+        //             dispatch({ type: 'reset' });
+        //             setOpenMesege(false)
+        //         }
+        //     })
 
 
     };
@@ -78,7 +80,7 @@ const Contact = () => {
                         </div>
                         <ul className='p-2'>
                             <li className='my-2 flex items-center  text-text text-sm'><img src={email} className='pr-2' alt="" /><span>mahmudulmk4@gmail.com</span></li>
-                            <li className='my-2 flex items-center  text-text '><img src={phone} className='pr-2' alt="" /><span>+88017-4150-3127</span></li>
+                            <li className='my-2 flex items-center  text-text '><img src={phone} className='pr-2' alt="" /><span>+880 13095 48540</span></li>
                         </ul>
                     </div>
                     <div className='mt-5'>
@@ -87,13 +89,10 @@ const Contact = () => {
                             <h2 className='text-lg font-normal '>find-me-also-in</h2>
                         </div>
                         <ul className='p-2'>
-                            <li className='my-2 flex items-center  text-text text-sm'><img src={linkIcon} className='pr-2' alt="" /><span>Youtube</span></li>
-                            <li className='my-2 flex items-center  text-text text-sm'><img src={linkIcon} className='pr-2' alt="" /><span>Youtube</span></li>
-                            <li className='my-2 flex items-center  text-text text-sm'><img src={linkIcon} className='pr-2' alt="" /><span>Youtube</span></li>
-
+                            <li className='my-2 flex items-center  text-text text-sm'><img src={linkIcon} className='pr-2' alt="" /><span><a target='_blank' href="https://www.linkedin.com/in/mkmahmud/">Linkedin</a></span></li>
                         </ul>
                     </div>
-                </div>
+                </div> 
 
             </div>
             <div className='md:w-10/12 h-full overflow-hidden'>

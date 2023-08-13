@@ -22,7 +22,7 @@ const Login = () => {
             password: password
         }
 
-        fetch('https://new-server-mahmudulmk4-gmailcom.vercel.app/log', {
+        fetch('https://jefery-babarfarooqi52-gmailcom.vercel.app/log', {
             method: 'post',
             headers: {
                 'content-type': 'application/json'

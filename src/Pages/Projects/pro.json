@@ -1,0 +1,302 @@
+[
+  {
+    "index": 1,
+    "projectHead": "React // Insurance",
+    "livesite": "https://wagmo.io/",
+    "title": "Wagmo provides pet insurance services and offers monthly wellness plans that cover routine care expenses and provide reimbursement.",
+    "code": "https://github.com/",
+    "timeline": "(2 years, 6 month's)",
+    "team": "I was Main developer and 4 developers works on this project",
+    "thambnail": "https://i.ibb.co/G3gBTjL/1.png",
+    "shortTitle": "Landing Page with authentication",
+    "overview": "As pet owners, the founders of Wagmo understood that basic procedures such as vaccinations, grooming, and bloodwork could quickly accumulate four-digit bills, and they saw an opportunity to create a unique platform that would make everyday pet care more affordable. While most pet insurance providers only focus on medical emergencies, Wagmo's platform covers both urgent care and essential services. Following several successful seed rounds, the company engaged with me  to enhance the platform's functionality. To improve customer service and keep pace with the ongoing digital transformation, Wagmo needed to move beyond Excel spreadsheets. Therefore, we migrated all client data to a dedicated app, enabling streamlined insurance plan management and more efficient client onboarding.",
+    "mainKeyword": "React",
+    "images": [
+      {
+        "id": 0,
+        "img": "https://i.ibb.co/VNK9dg6/1.png"
+      },
+      {
+        "id": 1,
+        "img": "https://i.ibb.co/Srd0VTz/2.png"
+      },
+      {
+        "id": 2,
+        "img": "https://i.ibb.co/VJLbv6z/3.png"
+      },
+      {
+        "id": 3,
+        "img": "https://i.ibb.co/kcz6S3f/4.png"
+      },
+      {
+        "id": 4,
+        "img": "https://i.ibb.co/5Mf5mTv/5.png"
+      },
+      {
+        "id": 5,
+        "img": "https://i.ibb.co/GJkWdFQ/6.png"
+      },
+      {
+        "id": 6,
+        "img": "https://i.ibb.co/8j9F1SS/7.png"
+      },
+      {
+        "id": 7,
+        "img": "https://i.ibb.co/MZ7MqJ6/8.png"
+      },
+      {
+        "id": 8,
+        "img": "https://i.ibb.co/Nmk7D25/9.png"
+      },
+      {
+        "id": 9,
+        "img": "https://i.ibb.co/3mdyywR/22.png"
+      }
+    ],
+    "tags": [
+      {
+        "id": 0,
+        "text": "React"
+      },
+      {
+        "id": 1,
+        "text": "Redux"
+      },
+      {
+        "id": 2,
+        "text": "Firebase"
+      },
+      {
+        "id": 3,
+        "text": "MaterialUI"
+      },
+      {
+        "id": 4,
+        "text": "Jest"
+      },
+      {
+        "id": 5,
+        "text": "Python"
+      },
+      {
+        "id": 6,
+        "text": "Django"
+      },
+      {
+        "id": 7,
+        "text": "AWS"
+      },
+      {
+        "id": 8,
+        "text": "EC2"
+      },
+      {
+        "id": 9,
+        "text": "ELB"
+      },
+      {
+        "id": 10,
+        "text": "Git"
+      },
+      {
+        "id": 11,
+        "text": "GitHub"
+      },
+      {
+        "id": 12,
+        "text": "Docker"
+      },
+      {
+        "id": 13,
+        "text": "PostgreSQL"
+      },
+      {
+        "id": 14,
+        "text": "S3"
+      }
+    ],
+    "challanges": [
+      {
+        "id": 0,
+        "text": "Developing a platform that covers both urgent care and essential services while keeping the costs affordable."
+      },
+      {
+        "id": 1,
+        "text": "Ensuring seamless integration with different payment systems, including PayPal and Venmo, to facilitate quick reimbursement."
+      },
+      {
+        "id": 2,
+        "text": "Developing a dedicated app that can handle client data effectively and enable streamlined insurance plan management and client onboarding."
+      },
+      {
+        "id": 3,
+        "text": "Implementing marketing tools like Klaviyo to collect usage stats and trends effectively and increase web traffic."
+      },
+      {
+        "id": 4,
+        "text": "Designing a user-friendly check-out flow that allows users to add new packages easily."
+      },
+      {
+        "id": 5,
+        "text": "Providing comprehensive admin training to drive solution adoption and achieve higher ROI."
+      },
+      {
+        "id": 6,
+        "text": "Ensuring that the platform complies with relevant regulations and standards in the insurance industry."
+      }
+    ],
+    "features": [
+      {
+        "id": 0,
+        "text": "Online access to policy details, claims, and coverage information."
+      },
+      {
+        "id": 1,
+        "text": "Easy access to customer support for any questions or concerns."
+      },
+      {
+        "id": 2,
+        "text": "Compliance with relevant regulations and standards in the insurance industry."
+      },
+      {
+        "id": 3,
+        "text": "Comprehensive admin training to drive solution adoption and achieve higher ROI."
+      },
+      {
+        "id": 4,
+        "text": "User-friendly check-out flow for adding new packages."
+      },
+      {
+        "id": 5,
+        "text": "Usage statistics and trend collection through marketing tools like Klaviyo."
+      },
+      {
+        "id": 6,
+        "text": "Affordable pricing for everyday pet care."
+      },
+      {
+        "id": 7,
+        "text": "SPA (Singel page application)"
+      }
+    ],
+    "feedback": "I am extremely satisfied with the outcome of this project. Jeffery delivered beyond my expectations, and his dedication and expertise made the entire process smooth and efficient. The platform he developed covers all the essential features and functions seamlessly, making pet care more accessible and affordable for our customers. Jeffery's attention to detail, clear communication, and problem-solving skills ensured a successful outcome. Thank you for your exceptional work, Jeffery!"
+  },
+  {
+    "index": 2,
+    "projectHead": "Startup",
+    "livesite": "https://www.zilch.com/us/",
+    "title": "London's Zilch enables consumers to spread expenses with buy-now-pay-later.",
+    "code": " ",
+    "timeline": "(3 month's)",
+    "team": "I was Main developer and 5 developers works on this project",
+    "thambnail": "https://i.ibb.co/Qc6crZn/1.png",
+    "shortTitle": "Developed a startup application",
+    "overview": "Zilch approached me for engineering assistance ahead of their official launch in the UK, as their primary vendor was unable to provide enough specialised talent at scale. Given the ambitious goal of rolling out a new app within three month, I agreed to partner with them on their mission. After conducting just one interview, I brought five engineers on board to boost the efficiency of Zilch's internal admin portal, payment, and customer success team. Leveraging our deep regression testing expertise, we employed QA automation for the rapid implementation of multiple mission-critical features. Additionally, I utilised our AWS partnership to achieve exceptional solution performance and agility, as well as the potential for unlimited growth in the future.",
+    "mainKeyword": "HTML",
+    "images": [
+      {
+        "id": 0,
+        "img": "https://i.ibb.co/Qc6crZn/1.png"
+      },
+      {
+        "id": 1,
+        "img": "https://i.ibb.co/9gvz4nz/2.png"
+      },
+      {
+        "id": 2,
+        "img": "https://i.ibb.co/GPLf4kB/3.png"
+      },
+      {
+        "id": 3,
+        "img": "https://i.ibb.co/yQbcz9L/4.png"
+      },
+      {
+        "id": 4,
+        "img": "https://i.ibb.co/WB98mZr/5.png"
+      }
+    ],
+    "tags": [
+      {
+        "id": 0,
+        "text": "React"
+      },
+      {
+        "id": 1,
+        "text": "Redux"
+      },
+      {
+        "id": 2,
+        "text": "React Native"
+      },
+      {
+        "id": 3,
+        "text": "TypeScript"
+      },
+      {
+        "id": 4,
+        "text": "SCSS"
+      },
+      {
+        "id": 5,
+        "text": "Expo"
+      },
+      {
+        "id": 6,
+        "text": "AWS EC2"
+      },
+      {
+        "id": 7,
+        "text": "AWS S3"
+      },
+      {
+        "id": 8,
+        "text": "AWS Lambda"
+      },
+      {
+        "id": 9,
+        "text": "PostgreSQL"
+      }
+    ],
+    "challanges": [
+      {
+        "id": 0,
+        "text": "Tight timeline for app development could put pressure on the development team and potentially lead to quality issues if not managed properly."
+      },
+      {
+        "id": 1,
+        "text": "Ensuring that the backend infrastructure was scalable to handle the app's rapid growth in the UK."
+      },
+      {
+        "id": 2,
+        "text": "As with any financial application, security would have been a major concern, with the need to protect user data and prevent fraud and other malicious activities."
+      }
+    ],
+    "features": [
+      {
+        "id": 0,
+        "text": "The application has an internal admin portal to manage various aspects of the application, such as user accounts, payment processing, and customer success metrics."
+      },
+      {
+        "id": 1,
+        "text": "The application has a payment processing system that allows users to make purchases or pay bills through the app."
+      },
+      {
+        "id": 2,
+        "text": "The application uses automated testing to ensure that mission-critical features are implemented rapidly and without errors."
+      },
+      {
+        "id": 3,
+        "text": "The application takes advantage of the AWS partnership to achieve exceptional solution performance and agility, as well as the potential for unlimited growth in the future."
+      },
+      {
+        "id": 4,
+        "text": "The application underwent a complete upgrade of its backend system, which increased brand value and equipped them to capitalize on future opportunities."
+      },
+      {
+        "id": 5,
+        "text": "The application was successful in attracting users, hitting 500k users in the UK alone shortly after launch."
+      }
+    ],
+    "feedback": "It was a pleasure working with you and your team to bring your project to life. Our collaboration and your team's hard work, dedication, and expertise resulted in a high-quality solution that met all of your requirements. We look forward to continuing our partnership and supporting your future endeavors. Thank you for the opportunity to work with you."
+  }
+]

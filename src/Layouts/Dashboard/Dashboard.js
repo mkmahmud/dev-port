@@ -16,6 +16,7 @@ const Dashboard = () => {
 
     // Messages
     const [messages, setMessages] = useState([]);
+    console.log(messages)
 
     // Loading
     const [loading, setLoading] = useState(true);
@@ -24,7 +25,7 @@ const Dashboard = () => {
     const [detailsMessage, setDetailsMassage] = useState({});
 
     useEffect(() => {
-        fetch('https://new-server-mahmudulmk4-gmailcom.vercel.app/getMessage')
+        fetch('https://jefery-babarfarooqi52-gmailcom.vercel.app/getMessage')
             .then(res => res.json())
             .then(data => {
                 setMessages(data);

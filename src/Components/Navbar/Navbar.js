@@ -3,6 +3,7 @@ import nav from '../../Assets/icons/nav.png';
 import cross from '../../Assets/icons/nav-cross.png';
 import { Link, useLocation } from 'react-router-dom';
 import './Navbar.css';
+import logo from '../../Assets/logo.png';
 
 const Navbar = () => {
 
@@ -19,7 +20,7 @@ const Navbar = () => {
         <div className='md:flex  '>
 
             <div className='flex justify-between items-center p-[18px] border-b border-border-bg md:w-2/12'>
-                <h2 className='text-text font-[450]'>Mahmudul-Hasan-MK</h2>
+                <h2 className='text-text font-[450] flex items-center'><img src={logo} className='h-6 w-6 mx-2' alt="" /> Mahmudul Hasan MK</h2>
                 <div className='md:hidden'>
                     {
                         mobileMenus ? <img onClick={() => { setmobileMenus(!mobileMenus) }} src={cross} alt="" /> : <img onClick={() => { setmobileMenus(!mobileMenus) }} src={nav} alt="" />
@@ -28,7 +29,7 @@ const Navbar = () => {
             </div>
 
 
-            <div className={`${mobileMenus ? 'block' : 'hidden'} absolute w-full bg-sec-bg h-[90%] flex justify-between flex-col transition`}>
+            <div className={`${mobileMenus ? 'block' : 'hidden'} absolute w-full bg-sec-bg h-[90%] flex justify-between flex-col transition z-10` }>
                 <ul className=''>
                     <li className='nav-links '><Link to='/'>_Home</Link></li>
                     <li className='nav-links'><Link to='/about'>_About-Me</Link></li>
