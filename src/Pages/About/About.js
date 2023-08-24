@@ -8,7 +8,6 @@ import PersonalInfo from "./PersonalInfoFolder/PersonalInfo";
 import email from "../../Assets/icons/mail-icon.png";
 import phone from "../../Assets/icons/phone-icon.png";
 import cross from "../../Assets/icons/close-icon.png";
-import profile from "../../Assets/user.png";
 import comment from "../../Assets/icons/comments-icon.png";
 import starts from "../../Assets/icons/Star.png";
 import { useGetUserQuery } from "../../redux/features/api/createAPI";
