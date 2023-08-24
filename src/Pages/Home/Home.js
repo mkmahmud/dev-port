@@ -1,7 +1,6 @@
 import React from "react";
 import "./Home.css";
 import TextAnimation from "react-text-animations";
-import user from "../../Assets/user.png";
 import { useGetUserQuery } from "../../redux/features/api/createAPI";
 
 const Home = () => {
