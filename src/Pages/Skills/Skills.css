@@ -7,16 +7,79 @@
 .skillBox {
   transform-origin: 360px;
   transform: rotate(calc(360deg / 10 * var(--i)));
+  /* animation: skill 5s linear infinite; */
 }
 .skillBox .insideImg {
   transform: rotate(calc(-360deg / 10 * var(--i)));
+  /* animation: skill 5s linear infinite; */
 }
 
 
-
+@keyframes skill {
+    0%{
+        rotate:0deg; 
+    }
+    100%{
+        rotate: 360deg;
+    }
+}
 
 @media only screen and (max-width: 768px) {
   .skillBox {
     transform-origin: 170px;
   }
+}
+
+
+.content {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    display: flex;
+    justify-content: center; /* Horizontal centering */
+    align-items: center;
+}
+
+.content::before{
+    content: '';
+    position: absolute;
+    inset: 60px;
+    border: 4px solid transparent;
+    border-left: 4px solid #FEA55F;
+    border-right: 4px solid #1C2B3A;
+    border-radius: 50%;
+    z-index: 1;
+    pointer-events: none;
+    animation: animi1 5s linear infinite;
+}
+
+@keyframes animi1 {
+    0%{
+        rotate:0deg; 
+    }
+    100%{
+        rotate: 360deg;
+    }
+}
+
+.content::after{
+    content: '';
+    position: absolute;
+    inset: 120px;
+    border: 4px solid transparent;
+    border-left: 4px solid #1C2B3A;
+    border-right: 4px solid #FEA55F;
+    border-radius: 50%;
+    z-index: 1;
+    pointer-events: none;
+    animation: animi2 2.5s linear infinite;
+}
+
+@keyframes animi2 {
+    0%{
+        rotate:360deg; 
+    }
+    100%{
+        rotate: 0deg;
+    }
 }

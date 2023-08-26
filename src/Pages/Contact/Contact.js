@@ -70,7 +70,7 @@ const Contact = () => {
 
     return (
         <div className='md:flex h-full '>
-            <div className='md:w-2/12 border-r border-border-bg md:flex '>
+            <div className='md:w-2/12 border-r border-border-bg md:flex pl-4 '>
 
                 <div className='w-full'>
                     <div>

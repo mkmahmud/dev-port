@@ -43,7 +43,7 @@ const Projects = () => {
 
     return (
         <div className='md:flex h-full bg-sec-bg'>
-            <div className='md:w-2/12 border-r border-border-bg md:flex '>
+            <div className='md:w-2/12 border-r border-border-bg md:flex pl-4'>
 
                 <div className='w-full '>
                     <div className='text-left flex items-center p-2 w-full  border-b border-border-bg'>
