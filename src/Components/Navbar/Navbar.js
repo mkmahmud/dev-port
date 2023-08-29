@@ -4,7 +4,7 @@ import "./Navbar.css";
 import { useGetUserQuery } from "../../redux/features/api/createAPI";
 import nav from "../../Assets/icons/nav.png";
 import cross from "../../Assets/icons/nav-cross.png";
-
+import { motion } from "framer-motion";
 const Navbar = () => {
   const { data } = useGetUserQuery("mahmudulmk4@gmail.com");
   const [mobileMenus, setMobileMenus] = useState(false);
@@ -13,6 +13,11 @@ const Navbar = () => {
 
   const toggleMobileMenus = () => {
     setMobileMenus(!mobileMenus);
+  };
+
+  const variants = {
+    visible: { opacity: 1 },
+    hidden: { opacity: 0 },
   };
 
   return (
@@ -31,10 +36,19 @@ const Navbar = () => {
       </div>
 
       {/* Mobile Menus */}
-      <div
+      <motion.div
+        initial={{ opacity: 0.6 }}
+        whileHover={{
+          scale: 1.2,
+          transition: { duration: 1 },
+          
+        }}
+        whileTap={{ scale: 0.9 }}
+        whileInView={{ opacity: 1 }}
+
         className={`${
           mobileMenus ? "block" : "hidden"
-        } fixed w-full bg-[#011627eb] top-0 h-screen flex flex-col justify-center items-center transition z-10`}
+        } fixed w-full bg-[#011627eb] top-0 h-screen flex flex-col justify-center items-center transition z-30`}
       >
         <button
           className="absolute top-0 left-1/2 transform -translate-x-1/2 mt-10 transition duration-300 ease-in-out hover:text-red-500"
@@ -57,7 +71,7 @@ const Navbar = () => {
             </li>
           ))}
         </ul>
-      </div>
+      </motion.div>
       {/* Desktop Menus */}
       <ul className="flex md:w-10/12 hidden md:flex">
         {["/", "/about", "/projects", "/skills", "/contact"].map((path) => (

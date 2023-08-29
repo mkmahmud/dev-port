@@ -14,7 +14,19 @@ export const api = createApi({
     getSingelProject: builder.query({
       query: (id) => `/project/project/${id}`,
     }),
+    submitMessage: builder.mutation({
+      query: (messageData) => ({
+        url: "/message/create-message",
+        method: "POST",
+        body: messageData,
+      }),
+    }),
   }),
 });
 
-export const { useGetUserQuery, useGetprojectsQuery, useGetSingelProjectQuery } = api;
+export const {
+  useGetUserQuery,
+  useGetprojectsQuery,
+  useGetSingelProjectQuery,
+  useSubmitMessageMutation
+} = api;

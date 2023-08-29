@@ -12,17 +12,15 @@ import TagButton from "../../Components/Button/TagButton";
 import SecondButton from "../../Components/Button/SecondButton";
 import starfill from "../../Assets/icons/starfill.png";
 import staroutline from "../../Assets/icons/staroutline.png";
-
+import sideArrow from "../../Assets/icons/sideArrow.png";
+import { motion, layout } from "framer-motion";
 // Import Swiper styles
 import "swiper/css";
 import "./Projects.css";
 
 import { Autoplay, Pagination, Navigation } from "swiper";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  setOpenProject,
-  toggleProject,
-} from "../../redux/features/project/projectSlice";
+import { setOpenProject } from "../../redux/features/project/projectSlice";
 import { useGetprojectsQuery } from "../../redux/features/api/createAPI";
 import SideProjectCard from "./ProjectsCard/SideProjectCard";
 
@@ -44,18 +42,45 @@ const Projects = () => {
 
   const dispatch = useDispatch();
   const { data, isLoading } = useGetprojectsQuery("mahmudulmk4@gmail.com");
+  const [sideProject, setSideProject] = useState(true);
 
   return (
-    <div className="md:flex h-full bg-sec-bg overflow-hidden">
-      <div className="md:w-2/12 border-r border-border-bg md:flex pl-4">
-        <div className="w-full overflow-scroll about-profile">
-          <div className="text-left flex items-center p-2 w-full  sticky top-0 z-10   border-b border-border-bg">
-            <img src={headerDrop} className="pr-4" alt="" />
+    <div className="md:flex h-full bg-sec-bg   md:overflow-hidden ">
+      <div className="sticky top-0 z-20 bg-cardBG about-profile  overflow-scroll md:static md:w-2/12 border-r border-border-bg md:flex pl-4">
+        <motion.div   layout
+       
+       animate={{ opacity: 0.9 }}
+       transition={{
+         opacity: { ease: "linear" },
+         layout: { duration: 0.3 }
+       }}
+
+       className="w-full overflow-scroll about-profile">
+          <div
+            onClick={() => {
+              setSideProject(!sideProject);
+            }}
+            className="cursor-pointer text-left flex items-center   p-2 w-full bg-cardBG   sticky top-0 z-10   border-b border-border-bg"
+          >
             <h2 className="text-lg font-normal ">Projects</h2>
+            {sideProject ? (
+              <img
+              
+                src={sideArrow}
+                className=" h-8  bloxk mx-auto rotate-90"
+                alt=""
+              />
+            ) : (
+              <img src={sideArrow} className=" h-8  bloxk mx-auto" alt="" />
+            )}
           </div>
 
-          {!myProjects.openProject && (
-            <ul className="p-2">
+          {!myProjects.openProject && sideProject && (
+            <motion.ul
+            initial={{ x: "-100%" }}
+            animate={{ x: "0%" }}
+            transition={{ type: "spring", mass: 0.3 }}
+            className="p-2">
               <LanguageCard
                 language={reactImage}
                 languageContent="React"
@@ -72,17 +97,18 @@ const Projects = () => {
                 language={gatsImage}
                 languageContent="Gatsby"
               ></LanguageCard>
-            </ul>
+            </motion.ul>
           )}
 
           {data?.data &&
             myProjects.openProject &&
+            sideProject &&
             data?.data.map((project) => (
               <SideProjectCard data={project} key={project._id}>
                 {" "}
               </SideProjectCard>
             ))}
-        </div>
+        </motion.div>
       </div>
       <div className="md:w-10/12  overflow-scroll projects-board text-text relative">
         <div className="p-2 text-left border-b border-border-bg  sticky top-0 z-10 bg-cardBG w-full header">
@@ -108,7 +134,7 @@ const Projects = () => {
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 pt-20">
+        <div className="grid grid-cols-1 md:grid-cols-3  ">
           {isLoading && (
             <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
               <div
@@ -122,8 +148,8 @@ const Projects = () => {
           )}
           {data?.data &&
             !myProjects.openProject &&
-            data?.data.map((project) => (
-              <ProjectsCard data={project} key={project._id}>
+            data?.data.map((project, index) => (
+              <ProjectsCard data={project} projectId={index} key={project._id}>
                 {" "}
               </ProjectsCard>
             ))}
@@ -132,7 +158,12 @@ const Projects = () => {
         {/* Details Project */}
         <div>
           {myProjects.detailsProject && myProjects.openProject && (
-            <div className="overflow-hidden">
+            <motion.div
+              initial={{ y: "100%" }}
+              animate={{ y: "0%" }}
+              transition={{ type: "spring", mass: 0.3 }}
+              className="overflow-hidden "
+            >
               <div className="mx-4 my-2 text-left">
                 <div className="">
                   <Swiper
@@ -212,7 +243,7 @@ const Projects = () => {
                   <p className="px-2">{Result}</p>
                 </div>
               </div>
-            </div>
+            </motion.div>
           )}
         </div>
       </div>

@@ -8,25 +8,25 @@ import {
   setDetailsProject,
 } from "../../../redux/features/project/projectSlice";
 
-const ProjectsCard = ({ data }) => {
+const ProjectsCard = ({ data, projectId }) => {
   const { _id, gellaryImages, projectTitle, projectKeyWord } = data;
 
   const { data: detailsData, isLoading } = useGetSingelProjectQuery(_id);
-  
-  
+
   const dispatch = useDispatch();
 
   const handelDetailsData = () => {
     if (detailsData) {
       dispatch(setDetailsProject(detailsData?.data));
-      
     }
   };
 
   return (
     <div className="w-[291px] md:w-[370px] my-4 mx-auto ">
       <h2 className="text-text text-left">
-        <span className="text-text-blue font-bold">Project</span>{" "}
+        <span className="text-text-blue font-bold">
+          Project_{projectId + 1}
+        </span>{" "}
         <span>{projectKeyWord}</span>
       </h2>
       <div className="bg-cardBG overflow-hidden my-4 text-left rounded-lg">
