@@ -7,6 +7,7 @@ import {
   setOpenProject,
   setDetailsProject,
 } from "../../../redux/features/project/projectSlice";
+import {motion} from "framer-motion"
 
 const ProjectsCard = ({ data, projectId }) => {
   const { _id, gellaryImages, projectTitle, projectKeyWord } = data;
@@ -22,7 +23,11 @@ const ProjectsCard = ({ data, projectId }) => {
   };
 
   return (
-    <div className="w-[291px] md:w-[370px] my-4 mx-auto ">
+    <motion.div 
+    initial={{ opacity: 0, y: -100 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.3 * projectId }}
+    className="w-[291px] md:w-[370px] my-4 mx-auto ">
       <h2 className="text-text text-left">
         <span className="text-text-blue font-bold">
           Project_{projectId + 1}
@@ -50,7 +55,7 @@ const ProjectsCard = ({ data, projectId }) => {
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

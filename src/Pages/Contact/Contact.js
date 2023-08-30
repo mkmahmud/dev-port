@@ -53,7 +53,6 @@ const Contact = () => {
 //   Notification after successfully sending message
   useEffect(() => {
     if (data?.message) {
-      console.log(data);
       notify();
     }
   }, [data]);

@@ -33,6 +33,7 @@ code {
   @apply border border-[#1E2D3D] ;
 }
 
+
 .transition{
   transition: 1s ease-in-out;
 }
@@ -41,3 +42,5 @@ code {
   width: 10px; /* Set the width of the scrollbar */
   height: 0px;
 }
+
+

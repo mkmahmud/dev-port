@@ -149,7 +149,7 @@ const Projects = () => {
           {data?.data &&
             !myProjects.openProject &&
             data?.data.map((project, index) => (
-              <ProjectsCard data={project} projectId={index} key={project._id}>
+              <ProjectsCard data={project} projectId={index+1} key={project._id}>
                 {" "}
               </ProjectsCard>
             ))}

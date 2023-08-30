@@ -11,10 +11,14 @@ import cross from "../../Assets/icons/close-icon.png";
 import comment from "../../Assets/icons/comments-icon.png";
 import starts from "../../Assets/icons/Star.png";
 import { useGetUserQuery } from "../../redux/features/api/createAPI";
+import { motion } from "framer-motion";
 
 const About = () => {
   // Show File
   const [showedFile, setShowdFile] = useState("Profile");
+  // sidebar states
+  const [isOpenPersonalInfo, setisOpenPersonalInfo] = useState(true);
+  const [isOpencontact, setisOpencontact] = useState(true);
 
   const { data, isLoading } = useGetUserQuery("mahmudulmk4@gmail.com");
   console.log(data.data);
@@ -24,44 +28,79 @@ const About = () => {
         <div className="md:w-10/12 w-full">
           <div>
             <div className="text-left flex items-center p-2 w-full border-b border-border-bg">
-              <img src={headerDrop} className="pr-4" alt="" />
-              <h2 className="text-lg font-normal">personal-info</h2>
+              {isOpenPersonalInfo ? (
+                <img src={headerDrop} className="pr-4 " alt="" />
+              ) : (
+                <img src={headerDrop} className="pr-4 -rotate-90 " alt="" />
+              )}
+              <h2
+                className="text-lg font-normal cursor-pointer"
+                onClick={() => {
+                  setisOpenPersonalInfo(!isOpenPersonalInfo);
+                }}
+              >
+                personal-info
+              </h2>
             </div>
-            <ul className="p-2">
-              <PersonalInfo
-                folder={folderOrange}
-                content="bio"
-                OpenStatus={true}
-                file={{ fileName: "Profile", setShowdFile }}
-              ></PersonalInfo>
-              <PersonalInfo
-                folder={folderGreen}
-                content="Experience"
-                file={{ fileName: "Experience", setShowdFile }}
-              ></PersonalInfo>
-              <PersonalInfo
-                folder={folderBlue}
-                content="educations"
-                file={{ fileName: "Education", setShowdFile }}
-              ></PersonalInfo>
-            </ul>
+            {isOpenPersonalInfo && (
+              <motion.ul 
+              initial={{ opacity: 0, x: -10 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.3  }}
+              className="p-2">
+                <PersonalInfo
+                  folder={folderOrange}
+                  content="bio"
+                  OpenStatus={true}
+                  file={{ fileName: "Profile", setShowdFile }}
+                ></PersonalInfo>
+                <PersonalInfo
+                  folder={folderGreen}
+                  content="Experience"
+                  file={{ fileName: "Experience", setShowdFile }}
+                ></PersonalInfo>
+                <PersonalInfo
+                  folder={folderBlue}
+                  content="educations"
+                  file={{ fileName: "Education", setShowdFile }}
+                ></PersonalInfo>
+              </motion.ul>
+            )}
           </div>
           <div className="my-4">
             <div className="text-left flex items-center p-2 w-full border-b border-t border-border-bg">
-              <img src={headerDrop} className="pr-4" alt="" />
-              <h2 className="text-lg font-normal">Contacts</h2>
+              {isOpencontact ? (
+                <img src={headerDrop} className="pr-4 " alt="" />
+              ) : (
+                <img src={headerDrop} className="pr-4 -rotate-90 " alt="" />
+              )}
+              <h2
+                className="text-lg font-normal cursor-pointer"
+                onClick={() => {
+                  setisOpencontact(!isOpencontact);
+                }}
+              >
+                Contacts
+              </h2>
             </div>
-
-            <ul className="p-2">
-              <li className="my-2 flex items-center  text-text text-sm">
-                <img src={email} className="pr-2" alt="" />
-                <a href={`mailto:${data?.data?.email}`}>{data?.data?.email}</a>
-              </li>
-              <li className="my-2 flex items-center  text-text ">
-                <img src={phone} className="pr-2" alt="" />
-                <span>{data?.data?.phoneNumber}</span>
-              </li>
-            </ul>
+            {isOpencontact && (
+              <motion.ul 
+              initial={{ opacity: 0, x: -10 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.3  }}
+              className="p-2">
+                <li className="my-2 flex items-center  text-text text-sm">
+                  <img src={email} className="pr-2" alt="" />
+                  <a href={`mailto:${data?.data?.email}`}>
+                    {data?.data?.email}
+                  </a>
+                </li>
+                <li className="my-2 flex items-center  text-text ">
+                  <img src={phone} className="pr-2" alt="" />
+                  <span>{data?.data?.phoneNumber}</span>
+                </li>
+              </motion.ul>
+            )}
           </div>
         </div>
       </div>
@@ -92,10 +131,15 @@ const About = () => {
                 </li>
 
                 {data?.data?.aboutMe &&
-                  data?.data?.aboutMe.map((singelLine) => (
-                    <li className="flex py-4">
+                  data?.data?.aboutMe.map((singelLine, index) => (
+                    <motion.li
+                      initial={{ opacity: 0, y: 100 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.3 * index }}
+                      className="flex py-4"
+                    >
                       <span>{singelLine}</span>
-                    </li>
+                    </motion.li>
                   ))}
               </ul>
             )}
@@ -106,15 +150,20 @@ const About = () => {
                 </li>
 
                 {data?.data?.education &&
-                  data?.data?.education.map((edu) => (
-                    <li className="px-4 py-6 ">
+                  data?.data?.education.map((edu, index) => (
+                    <motion.li
+                      initial={{ opacity: 0, y: 100 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.3 * index }}
+                      className="px-4 py-6 "
+                    >
                       <ul className="flex ">
                         <li className="font-bold">{edu.degreeTitle},</li>
                         <li className="pl-2">{edu.university}</li>
                       </ul>
                       <p className="py-2">{edu.about}</p>
                       <h3 className="font-semibold">{edu.duration}</h3>
-                    </li>
+                    </motion.li>
                   ))}
               </ul>
             )}
@@ -125,15 +174,20 @@ const About = () => {
                 </li>
 
                 {data?.data?.experience &&
-                  data?.data?.experience.map((exp) => (
-                    <li className="px-4 py-6 ">
+                  data?.data?.experience.map((exp, index) => (
+                    <motion.li
+                      initial={{ opacity: 0, y: 100 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.3 * index }}
+                      className="px-4 py-6 "
+                    >
                       <ul className="flex justify-between">
                         <li className="font-bold">{exp.title}</li>
                         <li>{exp.company}</li>
                       </ul>
                       <p className="py-2">{exp.about}</p>
                       <h3 className="font-semibold">{exp.duration}</h3>
-                    </li>
+                    </motion.li>
                   ))}
               </ul>
             )}
@@ -146,7 +200,12 @@ const About = () => {
           <div className="md:w-1/2 relative">
             <div className="text-text text-left py-4 px-6">
               <h2 className="text-text">// Code snippet showcase:</h2>
-              <div className="my-4">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.5 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5 }}
+                className="my-4"
+              >
                 <div className="flex justify-between items-center mr-6 my-10">
                   <div className="flex items-center">
                     <img
@@ -211,8 +270,13 @@ const About = () => {
                   </div>
                   <p>{"}"}</p>
                 </div>
-              </div>
-              <div className="my-4">
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, scale: 0.5 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.7 }}
+                className="my-4"
+              >
                 <div className="flex justify-between items-center mr-6 my-10">
                   <div className="flex items-center">
                     <img
@@ -276,7 +340,7 @@ const About = () => {
                   </div>
                   <p>{"}"}</p>
                 </div>
-              </div>
+              </motion.div>
             </div>
             <div className="absolute h-full w-5 border-l border-border-bg  top-0 right-0">
               <div className=" bg-border-bg h-3 w-full"></div>
