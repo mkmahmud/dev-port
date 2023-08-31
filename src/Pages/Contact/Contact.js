@@ -4,9 +4,9 @@ import email from "../../Assets/icons/mail-icon.png";
 import phone from "../../Assets/icons/phone-icon.png";
 import linkIcon from "../../Assets/icons/link.png";
 import cross from "../../Assets/icons/close-icon.png";
-import { useSubmitMessageMutation } from "../../redux/features/api/createAPI";
+import { useGetUserQuery, useSubmitMessageMutation } from "../../redux/features/api/createAPI";
 import { ToastContainer, toast } from "react-toastify";
-
+import { motion } from "framer-motion";
 import "react-toastify/dist/ReactToastify.css";
 
 const initialState = {
@@ -30,12 +30,17 @@ const Contact = () => {
   const [submitMessage, { isLoading, isError, error, data }] =
     useSubmitMessageMutation();
   // Toast
-  const notify = () => toast.success("Your Message sent Successfully !", {
-    position: toast.POSITION.TOP_CENTER
-  });
+  const notify = () =>
+    toast.success("Your Message sent Successfully !", {
+      position: toast.POSITION.TOP_CENTER,
+    });
   //
   const [openMessage, setOpenMesege] = useState(true);
   const [state, dispatch] = useReducer(reducer, initialState);
+
+  // Set sidebar options
+  const [isOpenContact, setisOpenContat] = useState(true);
+  const [isOpenFindMe, setisOpenFindMe] = useState(true);
 
   const handleInputChange = (event) => {
     dispatch({
@@ -50,7 +55,7 @@ const Contact = () => {
     await submitMessage(state);
   };
 
-//   Notification after successfully sending message
+  //   Notification after successfully sending message
   useEffect(() => {
     if (data?.message) {
       notify();
@@ -65,45 +70,81 @@ const Contact = () => {
     month: "short",
   });
   const formattedDate = `${year}, ${day} ${date}`;
-
+  const { data : mainUsesr, isLoading: mainUserLOading } = useGetUserQuery("mahmudulmk4@gmail.com");
   return (
     <div className="md:flex h-full ">
       <div className="md:w-2/12 border-r border-border-bg md:flex pl-4 ">
         <div className="w-full">
           <div>
-            <div className="text-left flex items-center p-2 w-full  border-b border-border-bg">
-              <img src={headerDrop} className="pr-4" alt="" />
+            <div
+              className="text-left flex items-center p-2 w-full  border-b border-border-bg cursor-pointer"
+              onClick={() => {
+                setisOpenContat(!isOpenContact);
+              }}
+            >
+              {isOpenContact ? (
+                <img src={headerDrop} className="pr-4 " alt="" />
+              ) : (
+                <img src={headerDrop} className="pr-4 -rotate-90 " alt="" />
+              )}
               <h2 className="text-lg font-normal ">Contact</h2>
             </div>
-            <ul className="p-2">
-              <li className="my-2 flex items-center  text-text text-sm">
-                <img src={email} className="pr-2" alt="" />
-                <span>mahmudulmk4@gmail.com</span>
-              </li>
-              <li className="my-2 flex items-center  text-text ">
-                <img src={phone} className="pr-2" alt="" />
-                <span>+880 13095 48540</span>
-              </li>
-            </ul>
+            {isOpenContact && (
+              <ul className="p-2">
+                <motion.li
+                  initial={{ x: -100 }}
+                  animate={{ x: 0 }}
+                  transition={{ type: "spring", mass: 0.4 }}
+                  className="my-2 flex items-center  text-text text-sm"
+                >
+                  <img src={email} className="pr-2" alt="" />
+                  <span>{mainUsesr?.data?.email}</span>
+                </motion.li>
+                <motion.li
+                  initial={{ x: -100 }}
+                  animate={{ x: 0 }}
+                  transition={{ type: "spring", mass: 0.6 }}
+                  className="my-2 flex items-center  text-text "
+                >
+                  <img src={phone} className="pr-2" alt="" />
+                  <span>{mainUsesr?.data?.phoneNumber}</span>
+                </motion.li>
+              </ul>
+            )}
           </div>
           <div className="mt-5">
-            <div className="text-left flex items-center p-2 w-full  border-b border-t border-border-bg">
-              <img src={headerDrop} className="pr-4" alt="" />
+            <div
+              className="text-left flex items-center p-2 w-full  border-b border-t border-border-bg cursor-pointer"
+              onClick={() => {
+                setisOpenFindMe(!isOpenFindMe);
+              }}
+            >
+              {isOpenFindMe ? (
+                <img src={headerDrop} className="pr-4 " alt="" />
+              ) : (
+                <img src={headerDrop} className="pr-4 -rotate-90 " alt="" />
+              )}
               <h2 className="text-lg font-normal ">find-me-also-in</h2>
             </div>
-            <ul className="p-2">
-              <li className="my-2 flex items-center  text-text text-sm">
-                <img src={linkIcon} className="pr-2" alt="" />
-                <span>
-                  <a
-                    target="_blank"
-                    href="https://www.linkedin.com/in/mkmahmud/"
-                  >
-                    Linkedin
-                  </a>
-                </span>
-              </li>
-            </ul>
+            {isOpenFindMe && (
+              <ul className="p-2">
+                <motion.li
+                   initial={{ x: -100 }}
+                   animate={{ x: 0 }}
+                   transition={{ type: "spring", mass: 0.5 }}
+                className="my-2 flex items-center  text-text text-sm">
+                  <img src={linkIcon} className="pr-2" alt="" />
+                  <span>
+                    <a
+                      target="_blank"
+                      href={mainUsesr?.data?.linkedinLink}
+                    >
+                      Linkedin
+                    </a>
+                  </span>
+                </motion.li>
+              </ul>
+            )}
           </div>
         </div>
       </div>

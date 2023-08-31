@@ -25,10 +25,14 @@ const Navbar = () => {
       {/* Logo and hambargar */}
       <div className="flex justify-between items-center p-[18px] border-b border-border-bg md:w-2/12">
         {data?.data && (
-          <h2 className="text-text font-[450] flex items-center">
+          <motion.h2
+          initial={{ opacity: 0, x:-100 }}
+          animate={{ opacity: 1 , x:0}}
+          transition={{ duration: 0.3 }}
+          className="text-text font-[450] flex items-center">
             <img src={data?.data?.userLogo} className="h-6 w-6 mx-2" alt="" />{" "}
             {data?.data?.userName}
-          </h2>
+          </motion.h2>
         )}
         <div className="md:hidden" onClick={toggleMobileMenus}>
           <img src={mobileMenus ? cross : nav} alt="" />

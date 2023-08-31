@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import headerDrop from "../../Assets/icons/headerDrop.png";
 import SwiperCore, {
   Navigation,
@@ -13,11 +13,12 @@ import "swiper/swiper-bundle.min.css";
 import "./Skills.css";
 import { useGetUserQuery } from "../../redux/features/api/createAPI";
 import demo from "../../Assets/logo.png";
+import { motion } from "framer-motion";
 
 const Skills = () => {
   const { data, isLoading } = useGetUserQuery("mahmudulmk4@gmail.com");
   SwiperCore.use([Navigation, Pagination, Autoplay]);
-
+  const [isOpenSkills, setisOpenSkills] = useState(true);
   const images = [
     "image1.jpg",
     "image2.jpg",
@@ -30,16 +31,48 @@ const Skills = () => {
       <div className="md:w-2/12 border-r border-border-bg pl-4 md:flex ">
         <div className="md:w-10/12 w-full">
           <div>
-            <div className="text-left flex items-center p-2 w-full border-b border-border-bg">
-              <img src={headerDrop} className="pr-4" alt="" />
+            <div
+              className="text-left flex items-center p-2 w-full border-b border-border-bg cursor-pointer"
+              onClick={() => {
+                setisOpenSkills(!isOpenSkills);
+              }}
+            >
+              {isOpenSkills ? (
+                <img src={headerDrop} className="pr-4 " alt="" />
+              ) : (
+                <img src={headerDrop} className="pr-4 -rotate-90 " alt="" />
+              )}
               <h2 className="text-lg font-normal">Skills</h2>
             </div>
+            {isOpenSkills && (
+              <div>
+                {data?.data?.sideSkills &&
+                  data?.data?.sideSkills.map((side, index) => (
+                    <motion.div
+                      initial={{ x: -100 }}
+                      animate={{ x: 0 }}
+                      transition={{ type: "spring", mass: 0.6 * (index+1) }}
+                      className="text-left text-text my-6"
+                    >
+                      <h2 className="text-bold  text-xl  ">
+                        {side.skillsTitle}
+                      </h2>
+                      <p>{side.details}</p>
+                    </motion.div>
+                  ))}
+              </div>
+            )}
           </div>
         </div>
       </div>
 
       <div className=" md:w-10/12 h-full overflow-scroll hidenScroll text-left  flex justify-center items-center">
-        <div className="circle relative w-[300px] h-[300px] md:w-[600px] md:h-[600px] border border-border-bg  rounded-full">
+        <motion.div
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          transition={{ type: "spring", mass: 0.5 }}
+          className="circle relative w-[300px] h-[300px] md:w-[600px] md:h-[600px] border border-border-bg  rounded-full"
+        >
           <div className="relative h-full w-full -left-[50%] flex justify-center items-center">
             {data?.data?.skills &&
               data?.data?.skills.map((skill, index) => (
@@ -47,7 +80,7 @@ const Skills = () => {
                   style={{ "--i": index + 1 }}
                   className="w-[40px] h-[40px] md:w-[100px] md:h-[100px] rounded-full  skillBox bg-blue-500 absolute"
                 >
-                  <img
+                  <motion.img
                     className="insideImg h-8 w-8 md:h-20 md:w-20 mx-auto block 	"
                     src={skill.techImage}
                     alt=""
@@ -55,7 +88,12 @@ const Skills = () => {
                 </div>
               ))}
           </div>
-          <div className="content">
+          <motion.div
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{ type: "spring", mass: 0.9 }}
+            className="content"
+          >
             <div className="carosul_content"></div>
             <Swiper
               spaceBetween={10}
@@ -80,8 +118,8 @@ const Skills = () => {
                   </SwiperSlide>
                 ))}
             </Swiper>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </div>
     </div>
   );

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import headerDrop from "../../Assets/icons/headerDrop.png";
 import cross from "../../Assets/icons/close-icon.png";
@@ -21,11 +21,15 @@ import "./Projects.css";
 import { Autoplay, Pagination, Navigation } from "swiper";
 import { useDispatch, useSelector } from "react-redux";
 import { setOpenProject } from "../../redux/features/project/projectSlice";
-import { useGetprojectsQuery } from "../../redux/features/api/createAPI";
+import {
+  useGetUserQuery,
+  useGetprojectsQuery,
+} from "../../redux/features/api/createAPI";
 import SideProjectCard from "./ProjectsCard/SideProjectCard";
 
 const Projects = () => {
   const myProjects = useSelector((state) => state.myProjects);
+  const sortProject = useSelector((state) => state.myProjects.sortProject);
 
   const {
     projectTitle,
@@ -42,20 +46,48 @@ const Projects = () => {
 
   const dispatch = useDispatch();
   const { data, isLoading } = useGetprojectsQuery("mahmudulmk4@gmail.com");
+  const { data: userData, isLoading: userLoading } = useGetUserQuery(
+    "mahmudulmk4@gmail.com"
+  );
   const [sideProject, setSideProject] = useState(true);
+
+  const detailsProjectRef = useRef(null); // Create a ref for the details-project section
+
+  useEffect(() => {
+    // Scroll the details-project section into view when details change
+    if (
+      detailsProjectRef.current &&
+      myProjects.detailsProject &&
+      myProjects.openProject
+    ) {
+      detailsProjectRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [myProjects.detailsProject, myProjects.openProject]);
+
+  const filteredAndSortedData = data?.data
+    ? data.data.filter((project) =>
+        project.projectCategory.some((category) =>
+          sortProject.some((input) =>
+            category.toLowerCase().includes(input.toLowerCase())
+          )
+        )
+      )
+    : [];
+
+  console.log(filteredAndSortedData);
 
   return (
     <div className="md:flex h-full bg-sec-bg   md:overflow-hidden ">
       <div className="sticky top-0 z-20 bg-cardBG about-profile  overflow-scroll md:static md:w-2/12 border-r border-border-bg md:flex pl-4">
-        <motion.div   layout
-       
-       animate={{ opacity: 0.9 }}
-       transition={{
-         opacity: { ease: "linear" },
-         layout: { duration: 0.3 }
-       }}
-
-       className="w-full overflow-scroll about-profile">
+        <motion.div
+          layout
+          animate={{ opacity: 0.9 }}
+          transition={{
+            opacity: { ease: "linear" },
+            layout: { duration: 0.3 },
+          }}
+          className="w-full overflow-scroll about-profile"
+        >
           <div
             onClick={() => {
               setSideProject(!sideProject);
@@ -65,7 +97,6 @@ const Projects = () => {
             <h2 className="text-lg font-normal ">Projects</h2>
             {sideProject ? (
               <img
-              
                 src={sideArrow}
                 className=" h-8  bloxk mx-auto rotate-90"
                 alt=""
@@ -77,26 +108,18 @@ const Projects = () => {
 
           {!myProjects.openProject && sideProject && (
             <motion.ul
-            initial={{ x: "-100%" }}
-            animate={{ x: "0%" }}
-            transition={{ type: "spring", mass: 0.3 }}
-            className="p-2">
-              <LanguageCard
-                language={reactImage}
-                languageContent="React"
-              ></LanguageCard>
-              <LanguageCard
-                language={htmlImage}
-                languageContent="HTML"
-              ></LanguageCard>
-              <LanguageCard
-                language={cssImage}
-                languageContent="CSS"
-              ></LanguageCard>
-              <LanguageCard
-                language={gatsImage}
-                languageContent="Gatsby"
-              ></LanguageCard>
+              initial={{ x: "-100%" }}
+              animate={{ x: "0%" }}
+              transition={{ type: "spring", mass: 0.3 }}
+              className="p-2"
+            >
+              {userData?.data?.shortTechnologies &&
+                userData?.data?.shortTechnologies.map((shortTechnologie) => (
+                  <LanguageCard
+                    language={shortTechnologie.img}
+                    languageContent={shortTechnologie.name}
+                  ></LanguageCard>
+                ))}
             </motion.ul>
           )}
 
@@ -110,6 +133,7 @@ const Projects = () => {
             ))}
         </motion.div>
       </div>
+
       <div className="md:w-10/12  overflow-scroll projects-board text-text relative">
         <div className="p-2 text-left border-b border-border-bg  sticky top-0 z-10 bg-cardBG w-full header">
           <h2 className="text-lg text-text flex justify-between">
@@ -146,17 +170,31 @@ const Projects = () => {
               </div>
             </div>
           )}
-          {data?.data &&
-            !myProjects.openProject &&
-            data?.data.map((project, index) => (
-              <ProjectsCard data={project} projectId={index+1} key={project._id}>
-                {" "}
-              </ProjectsCard>
-            ))}
+          {filteredAndSortedData.length
+            ? filteredAndSortedData.map((project, index) => (
+                <ProjectsCard
+                  data={project}
+                  projectId={index + 1}
+                  key={project._id}
+                >
+                  {" "}
+                </ProjectsCard>
+              ))
+            : data?.data &&
+              !myProjects.openProject &&
+              data?.data.map((project, index) => (
+                <ProjectsCard
+                  data={project}
+                  projectId={index + 1}
+                  key={project._id}
+                >
+                  {" "}
+                </ProjectsCard>
+              ))}
         </div>
 
         {/* Details Project */}
-        <div>
+        <div className="details-project" ref={detailsProjectRef}>
           {myProjects.detailsProject && myProjects.openProject && (
             <motion.div
               initial={{ y: "100%" }}
