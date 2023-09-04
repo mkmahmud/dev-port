@@ -4,10 +4,14 @@ import email from "../../Assets/icons/mail-icon.png";
 import phone from "../../Assets/icons/phone-icon.png";
 import linkIcon from "../../Assets/icons/link.png";
 import cross from "../../Assets/icons/close-icon.png";
-import { useGetUserQuery, useSubmitMessageMutation } from "../../redux/features/api/createAPI";
+import {
+  useGetUserQuery,
+  useSubmitMessageMutation,
+} from "../../redux/features/api/createAPI";
 import { ToastContainer, toast } from "react-toastify";
 import { motion } from "framer-motion";
 import "react-toastify/dist/ReactToastify.css";
+import { Helmet } from "react-helmet";
 
 const initialState = {
   name: "",
@@ -29,13 +33,13 @@ function reducer(state, action) {
 const Contact = () => {
   const [submitMessage, { isLoading, isError, error, data }] =
     useSubmitMessageMutation();
+  const [openMessage, setOpenMesege] = useState(true);
   // Toast
   const notify = () =>
     toast.success("Your Message sent Successfully !", {
       position: toast.POSITION.TOP_CENTER,
     });
   //
-  const [openMessage, setOpenMesege] = useState(true);
   const [state, dispatch] = useReducer(reducer, initialState);
 
   // Set sidebar options
@@ -53,14 +57,15 @@ const Contact = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     await submitMessage(state);
+    setOpenMesege(false);
   };
 
   //   Notification after successfully sending message
-  useEffect(() => {
-    if (data?.message) {
-      notify();
-    }
-  }, [data]);
+  // useEffect(() => {
+  //   if (data?.message) {
+  //     notify();
+  //   }
+  // }, [data]);
 
   const currentDate = new Date();
   const year = currentDate.getFullYear();
@@ -69,10 +74,16 @@ const Contact = () => {
     day: "2-digit",
     month: "short",
   });
-  const formattedDate = `${year}, ${day} ${date}`;
-  const { data : mainUsesr, isLoading: mainUserLOading } = useGetUserQuery("mahmudulmk4@gmail.com");
+  const formattedDate = `${year},  ${date}, ${day}  `;
+  const { data: mainUsesr, isLoading: mainUserLOading } = useGetUserQuery(
+    "mahmudulmk4@gmail.com"
+  );
   return (
     <div className="md:flex h-full ">
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Mahmudul Hasan MK - Contact</title>
+      </Helmet>
       <div className="md:w-2/12 border-r border-border-bg md:flex pl-4 ">
         <div className="w-full">
           <div>
@@ -98,17 +109,23 @@ const Contact = () => {
                   className="my-2 flex items-center  text-text text-sm"
                 >
                   <img src={email} className="pr-2" alt="" />
-                  <span>{mainUsesr?.data?.email}</span>
+                  <a href={`mailto:${mainUsesr?.data?.email}`}>
+                    {mainUsesr?.data?.email}
+                  </a>
                 </motion.li>
-                <motion.li
-                  initial={{ x: -100 }}
-                  animate={{ x: 0 }}
-                  transition={{ type: "spring", mass: 0.6 }}
-                  className="my-2 flex items-center  text-text "
-                >
-                  <img src={phone} className="pr-2" alt="" />
-                  <span>{mainUsesr?.data?.phoneNumber}</span>
-                </motion.li>
+                {mainUsesr?.data?.phoneNumber && (
+                  <motion.li
+                    initial={{ x: -100 }}
+                    animate={{ x: 0 }}
+                    transition={{ type: "spring", mass: 0.6 }}
+                    className="my-2 flex items-center  text-text "
+                  >
+                    <img src={phone} className="pr-2" alt="" />
+                    <a href={`tel:${mainUsesr?.data?.phoneNumber}`}>
+                      {mainUsesr?.data?.phoneNumber}
+                    </a>
+                  </motion.li>
+                )}
               </ul>
             )}
           </div>
@@ -129,16 +146,14 @@ const Contact = () => {
             {isOpenFindMe && (
               <ul className="p-2">
                 <motion.li
-                   initial={{ x: -100 }}
-                   animate={{ x: 0 }}
-                   transition={{ type: "spring", mass: 0.5 }}
-                className="my-2 flex items-center  text-text text-sm">
+                  initial={{ x: -100 }}
+                  animate={{ x: 0 }}
+                  transition={{ type: "spring", mass: 0.5 }}
+                  className="my-2 flex items-center  text-text text-sm"
+                >
                   <img src={linkIcon} className="pr-2" alt="" />
                   <span>
-                    <a
-                      target="_blank"
-                      href={mainUsesr?.data?.linkedinLink}
-                    >
+                    <a target="_blank" href={mainUsesr?.data?.linkedinLink}>
                       Linkedin
                     </a>
                   </span>
@@ -188,7 +203,7 @@ const Contact = () => {
                 <div className="my-4">
                   <p className="py-2.5">_message:</p>
                   <textarea
-                    maxlength="200"
+                    maxLength="200"
                     required
                     name="message"
                     value={state.message}
@@ -207,7 +222,11 @@ const Contact = () => {
                 </button>
               </form>
             ) : (
-              <div>
+              <motion.div
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                transition={{ type: "spring", mass: 0.7 }}
+              >
                 <h2 className="text-[26px]">Thank you! 🤘</h2>
                 <p className="py-4">
                   Your message has been accepted. You will recieve answer really
@@ -219,7 +238,7 @@ const Contact = () => {
                 >
                   submit-new-message
                 </button>
-              </div>
+              </motion.div>
             )}
 
             <div className="absolute h-full w-5 border-l border-border-bg  top-0 right-0">

@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import headerDrop from "../../Assets/icons/headerDrop.png";
-import cross from "../../Assets/icons/close-icon.png";
+import cross from "../../Assets/icons/close.png";
 import LanguageCard from "./LanguageCard/LanguageCard";
 import reactImage from "../../Assets/icons/languages/react.png";
 import htmlImage from "../../Assets/icons/languages/html.png";
@@ -26,6 +26,7 @@ import {
   useGetprojectsQuery,
 } from "../../redux/features/api/createAPI";
 import SideProjectCard from "./ProjectsCard/SideProjectCard";
+import { Helmet } from "react-helmet";
 
 const Projects = () => {
   const myProjects = useSelector((state) => state.myProjects);
@@ -74,10 +75,12 @@ const Projects = () => {
       )
     : [];
 
-  console.log(filteredAndSortedData);
-
   return (
     <div className="md:flex h-full bg-sec-bg   md:overflow-hidden ">
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Mahmudul Hasan MK - Projects</title>
+      </Helmet>
       <div className="sticky top-0 z-20 bg-cardBG about-profile  overflow-scroll md:static md:w-2/12 border-r border-border-bg md:flex pl-4">
         <motion.div
           layout
@@ -108,18 +111,22 @@ const Projects = () => {
 
           {!myProjects.openProject && sideProject && (
             <motion.ul
-              initial={{ x: "-100%" }}
+              initial={{ x: "-20%" }}
               animate={{ x: "0%" }}
               transition={{ type: "spring", mass: 0.3 }}
               className="p-2"
             >
               {userData?.data?.shortTechnologies &&
-                userData?.data?.shortTechnologies.map((shortTechnologie) => (
-                  <LanguageCard
-                    language={shortTechnologie.img}
-                    languageContent={shortTechnologie.name}
-                  ></LanguageCard>
-                ))}
+                userData?.data?.shortTechnologies.map(
+                  (shortTechnologie, index) => (
+                    <LanguageCard
+                      key={index}
+                      language={shortTechnologie.img}
+                      languageContent={shortTechnologie.name}
+                      index={index}
+                    ></LanguageCard>
+                  )
+                )}
             </motion.ul>
           )}
 
@@ -144,8 +151,11 @@ const Projects = () => {
                 : "Projects"}{" "}
             </span>{" "}
             {myProjects.detailsProject && myProjects.openProject ? (
-              <img
-                className="px-10 h-8"
+              <motion.img
+                initial={{ x: "100%" }}
+                animate={{ x: "0%" }}
+                transition={{ type: "spring", mass: 0.6 }}
+                className="mr-4 p-2 h-8 w-8 bg-text-yellow rounded-full"
                 onClick={() => {
                   dispatch(setOpenProject());
                 }}
@@ -161,12 +171,8 @@ const Projects = () => {
         <div className="grid grid-cols-1 md:grid-cols-3  ">
           {isLoading && (
             <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
-              <div
-                class=" animate-spin inline-block w-20 h-20 border-[3px] border-current border-t-transparent text-blue-600 rounded-full"
-                role="status"
-                aria-label="loading"
-              >
-                <span class="sr-only">Loading...</span>
+              <div className="flex items-center justify-center absolute top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 ">
+                <div className="w-80 h-80 border-t-4 border-b-4 border-green-900 rounded-full animate-spin"></div>
               </div>
             </div>
           )}
@@ -207,21 +213,19 @@ const Projects = () => {
                   <Swiper
                     spaceBetween={50}
                     slidesPerView={1}
-                    onSlideChange={() => console.log("slide change")}
                     autoplay={{
                       delay: 2000,
                       disableOnInteraction: false,
                     }}
                     modules={[Autoplay, Pagination, Navigation]}
-                    onSwiper={(swiper) => console.log(swiper)}
                   >
-                    {gellaryImages.map((img) => (
-                      <SwiperSlide>
+                    {gellaryImages.map((img, index) => (
+                      <SwiperSlide key={index}>
                         {" "}
                         <img
                           src={img}
                           alt=""
-                          className="my-2 h-[200px] md:h-[600px] w-full rounded-lg"
+                          className="my-2 md:h-[700px] mx-auto  w-full md:w-[1200px] rounded-lg"
                         />
                       </SwiperSlide>
                     ))}
@@ -233,8 +237,10 @@ const Projects = () => {
                 <div className="md:flex my-10">
                   <h2 className="text-xl">Overview:</h2>
                   <div>
-                    {overview.map((i) => (
-                      <p className="p-2">{i}</p>
+                    {overview.map((i, index) => (
+                      <p key={index} className="p-2">
+                        {i}
+                      </p>
                     ))}
                   </div>
                 </div>
@@ -249,8 +255,11 @@ const Projects = () => {
                 <div className=" my-10">
                   <h2 className="text-xl">Challenges:</h2>
                   <ul className="px-2">
-                    {challenges.map((challange) => (
-                      <li className="flex items-start md:pl-10 my-4">
+                    {challenges.map((challange, index) => (
+                      <li
+                        key={index}
+                        className="flex items-start md:pl-10 my-4"
+                      >
                         <img src={staroutline} alt="" />{" "}
                         <span className="px-2 text-lg">{challange} </span>
                       </li>
@@ -260,8 +269,11 @@ const Projects = () => {
                 <div className=" my-10">
                   <h2 className="text-xl">Features:</h2>
                   <ul className="px-2">
-                    {features.map((feature) => (
-                      <li className="flex items-start md:pl-10 my-4">
+                    {features.map((feature, index) => (
+                      <li
+                        key={index}
+                        className="flex items-start md:pl-10 my-4"
+                      >
                         <img src={starfill} alt="" />{" "}
                         <span className="px-2 text-lg">{feature} </span>
                       </li>
@@ -272,7 +284,7 @@ const Projects = () => {
                   <h2 className="text-xl">Technologies:</h2>
                   <div className="px-2">
                     {Technologies.map((i, index) => (
-                      <TagButton text={i} key={index.key}></TagButton>
+                      <TagButton text={i} key={index}></TagButton>
                     ))}
                   </div>
                 </div>

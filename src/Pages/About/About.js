@@ -12,6 +12,7 @@ import comment from "../../Assets/icons/comments-icon.png";
 import starts from "../../Assets/icons/Star.png";
 import { useGetUserQuery } from "../../redux/features/api/createAPI";
 import { motion } from "framer-motion";
+import { Helmet } from "react-helmet";
 
 const About = () => {
   // Show File
@@ -21,9 +22,13 @@ const About = () => {
   const [isOpencontact, setisOpencontact] = useState(true);
 
   const { data, isLoading } = useGetUserQuery("mahmudulmk4@gmail.com");
-  console.log(data.data);
+
   return (
     <div className="md:flex h-full ">
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Mahmudul Hasan MK - About</title>
+      </Helmet>
       <div className="md:w-2/12 border-r border-border-bg md:flex pl-4">
         <div className="md:w-10/12 w-full">
           <div>
@@ -43,11 +48,12 @@ const About = () => {
               </h2>
             </div>
             {isOpenPersonalInfo && (
-              <motion.ul 
-              initial={{ opacity: 0, x: -10 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.3  }}
-              className="p-2">
+              <motion.ul
+                initial={{ opacity: 0, x: -10 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.3 }}
+                className="p-2"
+              >
                 <PersonalInfo
                   folder={folderOrange}
                   content="bio"
@@ -84,11 +90,12 @@ const About = () => {
               </h2>
             </div>
             {isOpencontact && (
-              <motion.ul 
-              initial={{ opacity: 0, x: -10 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.3  }}
-              className="p-2">
+              <motion.ul
+                initial={{ opacity: 0, x: -10 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.3 }}
+                className="p-2"
+              >
                 <li className="my-2 flex items-center  text-text text-sm">
                   <img src={email} className="pr-2" alt="" />
                   <a href={`mailto:${data?.data?.email}`}>
@@ -129,10 +136,10 @@ const About = () => {
                 <li className="text-center text-lg font-bold py-2 ">
                   <span>/** About Me ** /</span>
                 </li>
-
                 {data?.data?.aboutMe &&
                   data?.data?.aboutMe.map((singelLine, index) => (
                     <motion.li
+                      key={index}
                       initial={{ opacity: 0, y: 100 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.3 * index }}

@@ -131,12 +131,12 @@ const SnakeGame = ({ isGameOver, setEatenApples, eatenApples }) => {
       position: "relative",
     };
 
-    const appleClass = isApple ? "animate-ping" : "";
+    const appleClass = isApple ? " " : "";
 
     const appleStyle = {
       width: "80%",
       height: "80%",
-      backgroundColor: isApple ? "#43D9AD" : "",
+      backgroundColor: isApple ? "#FEA55F" : "",
       borderRadius: isApple ? "50%" : "0",
       position: "absolute",
       top: "50%",
@@ -184,8 +184,8 @@ const SnakeGame = ({ isGameOver, setEatenApples, eatenApples }) => {
             className={`relative flex h-3 w-3 ${appleClass}`}
             style={appleStyle}
           >
-            <span className="animate-ping absolute inline-flex justify-center items-center h-full w-full rounded-full bg-[#43D9AD] opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-3 w-3 bg-[#43D9AD]"></span>
+            <span className="animate-ping absolute inline-flex justify-center items-center h-full w-full rounded-full bg-[#FEA55F] opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-3 w-3 bg-[#FEA55F]"></span>
           </span>
         )}
         {isSnake && !(row === snake[0].y && col === snake[0].x) && (

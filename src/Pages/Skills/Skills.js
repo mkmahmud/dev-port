@@ -12,8 +12,9 @@ import "swiper/swiper-bundle.min.css";
 
 import "./Skills.css";
 import { useGetUserQuery } from "../../redux/features/api/createAPI";
-import demo from "../../Assets/logo.png";
+
 import { motion } from "framer-motion";
+import { Helmet } from "react-helmet";
 
 const Skills = () => {
   const { data, isLoading } = useGetUserQuery("mahmudulmk4@gmail.com");
@@ -28,6 +29,10 @@ const Skills = () => {
 
   return (
     <div className="md:flex h-full skills overflow-scroll hidenScroll">
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Mahmudul Hasan MK - Skills</title>
+      </Helmet>
       <div className="md:w-2/12 border-r border-border-bg pl-4 md:flex ">
         <div className="md:w-10/12 w-full">
           <div>
@@ -49,9 +54,10 @@ const Skills = () => {
                 {data?.data?.sideSkills &&
                   data?.data?.sideSkills.map((side, index) => (
                     <motion.div
+                      key={index}
                       initial={{ x: -100 }}
                       animate={{ x: 0 }}
-                      transition={{ type: "spring", mass: 0.6 * (index+1) }}
+                      transition={{ type: "spring", mass: 0.3 * (index + 1) }}
                       className="text-left text-text my-6"
                     >
                       <h2 className="text-bold  text-xl  ">
@@ -77,6 +83,7 @@ const Skills = () => {
             {data?.data?.skills &&
               data?.data?.skills.map((skill, index) => (
                 <div
+                  key={index}
                   style={{ "--i": index + 1 }}
                   className="w-[40px] h-[40px] md:w-[100px] md:h-[100px] rounded-full  skillBox bg-blue-500 absolute"
                 >
@@ -108,8 +115,8 @@ const Skills = () => {
               }}
             >
               {data?.data?.skills &&
-                data?.data?.skills.map((skill) => (
-                  <SwiperSlide>
+                data?.data?.skills.map((skill, index) => (
+                  <SwiperSlide key={index}>
                     <img
                       src={skill.techImage}
                       alt={skill.techImage}

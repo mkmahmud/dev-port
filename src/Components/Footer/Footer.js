@@ -14,17 +14,18 @@ const Footer = () => {
     <div className="border-t border-b border-border-bg ">
       <div className=" flex  items-center">
         <motion.h2
-        initial={{ opacity: 0, x:-100 }}
-        animate={{ opacity: 1 , x:0}}
-        transition={{ duration: 0.3 }}
-         className="text-text text-left pl-[18px] font-[450] pr-4 md:w-2/12">
+          initial={{ opacity: 0, x: -100 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.3 }}
+          className="text-text text-left pl-[18px] font-[450] pr-4 md:w-2/12"
+        >
           find me in also:
         </motion.h2>
         <ul className="flex md:w-10/12">
           <li className="footer-links border-x">
-            <motiona href={data?.data?.linkedinLink} target="_blank">
+            <a href={data?.data?.linkedinLink} target="_blank">
               <img src={linkedin} alt="" />
-            </motiona>
+            </a>
           </li>
           {/* <li className='footer-links border-x'><a href='https://www.facebook.com/mkmahmuddev/' target='_blank'><img src={facebook} alt="" /></a></li>
                     <li className='footer-links border-x'><a href='https://stackoverflow.com/users/16854390/md-mahmudul-hasan' target='_blank'><img src={stackOverflow} alt="" /></a></li> */}

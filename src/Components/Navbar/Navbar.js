@@ -31,7 +31,7 @@ const Navbar = () => {
           transition={{ duration: 0.3 }}
           className="text-text font-[450] flex items-center">
             <img src={data?.data?.userLogo} className="h-6 w-6 mx-2" alt="" />{" "}
-            {data?.data?.userName}
+            {data?.data?.userLogoName}
           </motion.h2>
         )}
         <div className="md:hidden" onClick={toggleMobileMenus}>

@@ -4,7 +4,7 @@ import TextAnimation from "react-text-animations";
 import { useGetUserQuery } from "../../redux/features/api/createAPI";
 import SnackGame from "./SnakeGame/SnakeGame";
 import { GiSnake } from "react-icons/gi";
-import { RiCloseCircleFill } from "react-icons/ri";
+import { RiCloseCircleFill, RiGamepadFill } from "react-icons/ri";
 import { SiAmazongames } from "react-icons/si";
 import weldoneAudio from "../../Assets/audio/weldone.wav";
 import ArrowKeyButtons from "../../Components/Button/ArrowButtons";
@@ -13,6 +13,7 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import Typewriter from "typewriter-effect";
+import { Helmet } from "react-helmet";
 
 const Home = () => {
   const { data, isLoading } = useGetUserQuery("mahmudulmk4@gmail.com");
@@ -50,28 +51,37 @@ const Home = () => {
           <div className="w-80 h-80 border-t-4 border-b-4 border-green-900 rounded-full animate-spin"></div>
         </div>
       )}
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>
+          Mahmudul Hasan MK - Full stack developer - Front end developer
+        </title>
+      </Helmet>
 
       {data?.data && (
         <div className="h-full overflow-hidden md:flex justify-evenly items-center">
           <div className="text-left  flex flex-col justify-around h-full items-center md:justify-evenly md:items-baseline p-[27px] ">
             <div className="">
               <motion.h2
-              initial={{ opacity: 0, y:-100 }}
-              animate={{ opacity: 1 , y:0}}
-              transition={{ duration: 0.3 }}
-              className="text-lg font-medium">Hi everybody. I am</motion.h2>
+                initial={{ opacity: 0, y: -100 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3 }}
+                className="text-lg font-medium"
+              >
+                Hi everybody. I am
+              </motion.h2>
               <motion.h1
-                initial={{ opacity: 0, x:-100 }}
-                animate={{ opacity: 1 , x:0}}
+                initial={{ opacity: 0, x: -100 }}
+                animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.3 }}
                 className="text-[62px]  leading-[62px]"
               >
                 {data?.data?.userName}
               </motion.h1>
-              <div className="text-text text-xl flex">
+              <div className="text-text-blue font-semibold text-xl flex">
                 {" "}
                 {/* Change <p> to <div> */}
-                {"## "}
+                {"> "}
                 <span className="mx-2">{` `} </span>
                 <Typewriter
                   options={{
@@ -124,7 +134,7 @@ const Home = () => {
               alt=""
             /> */}
           <motion.div
-            initial={{ opacity: 0, x: 20 }}
+            initial={{ opacity: 0, x: 10 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.3 }}
             className="z-50 relative  h-full lg:flex hidden justify-start items-center"
@@ -155,20 +165,27 @@ const Home = () => {
                     setEatenApples={setEatenApples}
                   />
                 ) : (
-                  <div
-                    data-aos="zoom-in"
-                    className="flex flex-col text-7xl text-a2"
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.5 }}
+                    className="flex flex-col text-[80px] text-[#43D9AD] "
                   >
-                    <GiSnake />
+                    <motion.div
+                      initial={{ opacity: 0, rotate: 0 }}
+                      animate={{ opacity: 1, rotate: 360 }}
+                      transition={{ duration: 0.5 }}
+                    >
+                      <GiSnake />
+                    </motion.div>
                     {/* <RiGamepadFill /> */}
                     <SiAmazongames />
-                  </div>
+                  </motion.div>
                 )}
                 {wellDone && (
                   <div
-                    // data-aos="zoom-in"
                     style={{ background: "rgba(1, 22, 39, 0.84)" }}
-                    className="absolute left-9 right-[13.2rem] bottom-36 text-center text-a2 text-2xl uppercase py-2"
+                    className="absolute left-9 right-[13.2rem] bottom-36 text-center text-[#43D9AD] text-2xl uppercase py-2"
                   >
                     well-done!
                   </div>
@@ -190,7 +207,6 @@ const Home = () => {
 
                 {!playGame && (
                   <button
-                    // data-aos="zoom-in"
                     disabled={playGame}
                     onClick={() => {
                       setPlayGame(!playGame);
@@ -219,8 +235,17 @@ const Home = () => {
                 {/* snake food section  */}
                 <div className="mt-8 p-2">
                   <p className="text-text">{`//food left`}</p>
-                  <div className="mt-4 grid grid-cols-5 gap-4  justify-evenly items-center">
-                    {repeatedSnakeFood}
+                  <div className="mt-4 grid grid-cols-5 gap-4 justify-evenly items-center">
+                    {repeatedSnakeFood.map((food, index) => (
+                      <motion.div
+                        initial={{ x: 20 }}
+                        animate={{ x: 0 }}
+                        transition={{ type: "spring", mass: 0.3 * index + 1 }}
+                        key={index}
+                      >
+                        {food}
+                      </motion.div>
+                    ))}
                   </div>
                 </div>
                 <Link
