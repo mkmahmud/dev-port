@@ -30,14 +30,39 @@ Welcome to the front-end documentation for the Developer Portfolio Management sy
 - Access your portfolios on the go with our mobile-friendly version.
 - Monitor investments, make informed decisions, and receive alerts from your smartphone or tablet.
 
-  
+## Technologies Used
+
+This project was developed using the following technologies and tools:
+
+- **React**: A JavaScript library for building user interfaces.
+- **Redux**: A state management library for React applications.
+- **Node.js**: A JavaScript runtime environment for server-side development.
+- **Express**: A minimal and flexible Node.js web application framework.
+- **MongoDB**: A NoSQL database for storing application data.
+- **Tailwind CSS**: A utility-first CSS framework for rapid UI development.
+- **Firebase**: A cloud-based platform for building web and mobile applications.
+- **Essential Tools**: Various essential development tools and libraries.
+
 
 ## Getting Started
 
 To access the Professional Portfolio Manager frontend, follow these steps:
 
-1. Open your web browser.
-2. Navigate to the hosted URL for the frontend application.
+1. Clone this repository.
+```bash
+   git clone https://github.com/mkmahmud/dev-port
+```
+2. install node_modules
+```bash
+   cd dev-port
+   npm install
+```
+3. Configure User Email
+- Open `App.js` in your code editor.
+- Locate the user email configuration and update it as needed.
+4. Run backend [This is Backend Code](https://github.com/mkmahmud/portfolio-backend.git)
+5. npm start
+6. Navigate to the hosted URL for the front-end application.
 
 ## Usage
 
