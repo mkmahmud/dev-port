@@ -3,7 +3,7 @@ import Router from "./Routes/Router";
 import { useGetUserQuery } from "./redux/features/api/createAPI";
 
 function App() {
-  const { data, isLoading } = useGetUserQuery("mahmudulmk4@gmail.com");
+  const { data, isLoading } = useGetUserQuery("mahmudulmk44@gmail.com");
 
   return (
     <div className="App min-w-[375px] relative bg-sec-bg ">
